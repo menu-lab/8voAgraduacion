@@ -169,7 +169,6 @@
       color: var(--ink-primary);
     }
 
-    /* Botón de Nota Musical Evidente y Estilizado */
     .audio-btn {
       position: relative;
       display: inline-flex;
@@ -1004,7 +1003,6 @@
       VIDEO_PREFIX: 'video',             // Busca automáticamente video1.mp4, video2.mp4, video3.mp4...
       VIDEO_EXT: '.mp4',
       AUDIO_EXT: '.mp3',                 // Busca automáticamente 1.mp3, 2.mp3, 3.mp3...
-      // Reemplaza los strings vacíos por las rutas de tus cuadraditos (ej: 'fotos/alumno1.jpg')
       FOTOS_CURSO: [
         { nombre: 'Alumno 1', img: '' },
         { nombre: 'Alumno 2', img: '' },
@@ -1093,7 +1091,6 @@
 
       if (audioPlaylist.length === 0) return;
 
-      // Arranca en una pista aleatoria distinta a la última apertura
       const lastTrack = localStorage.getItem('gala8a_last_track');
       let pool = audioPlaylist.filter(t => t !== lastTrack);
       if (pool.length === 0) pool = audioPlaylist;
@@ -1103,14 +1100,12 @@
 
       audioEl.src = audioPlaylist[currentTrackIdx];
 
-      // Avanza automáticamente a la siguiente canción cuando termina la actual
       audioEl.addEventListener('ended', () => {
         currentTrackIdx = (currentTrackIdx + 1) % audioPlaylist.length;
         audioEl.src = audioPlaylist[currentTrackIdx];
         audioEl.play().then(() => updateAudioUI(true)).catch(() => updateAudioUI(false));
       });
 
-      // Intento de reproducción automática inmediata
       const tryAutoPlay = () => {
         if (userManuallyPaused || audioPlaylist.length === 0) return;
         audioEl.play()
@@ -1123,7 +1118,6 @@
           });
       };
 
-      // Si el navegador bloquea el autoplay inicial, desbloquea apenas toquen cualquier punto de la pantalla
       const removeUnlockListeners = () => {
         document.removeEventListener('pointerdown', tryAutoPlay);
         document.removeEventListener('keydown', tryAutoPlay);
@@ -1297,10 +1291,65 @@
     updateConfetti();
 
     /* =====================================================================
-       7. SÍNTESIS DE VOZ EN ESPAÑOL + VENTANAS EMERGENTES
+       7. VOZ NATURAL, CÁLIDA, PAUSADA Y JUVENIL + VENTANAS EMERGENTES
     ===================================================================== */
     let voiceMuted = false;
     let currentVoiceText = '';
+    let selectedNaturalVoice = null;
+    let speechQueueTimer = null;
+
+    function pickBestNaturalSpanishVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+
+      // Prioriza voces de alta naturalidad/neuronales en español latino y español general
+      const preferredNames = [
+        'google español',
+        'dalia',      // Microsoft Natural México (muy cálida y juvenil)
+        'paulina',    // Apple / macOS / iOS español latino natural
+        'catalina',   // Apple español Chile
+        'sabina',     // Microsoft español
+        'camila',     // Amazon / Edge natural
+        'paloma',
+        'mónica',
+        'monica',
+        'sofía',
+        'sofia',
+        'natural',
+        'neural'
+      ];
+
+      const spanishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('es'));
+      if (!spanishVoices.length) return null;
+
+      for (const keyword of preferredNames) {
+        const match = spanishVoices.find(v => v.name.toLowerCase().includes(keyword));
+        if (match) return match;
+      }
+
+      // Evita voces masculinas muy graves si hay una opción femenina/juvenil más amable
+      return spanishVoices[0];
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        selectedNaturalVoice = pickBestNaturalSpanishVoice();
+      };
+      selectedNaturalVoice = pickBestNaturalSpanishVoice();
+    }
+
+    function stopSpeech() {
+      if (speechQueueTimer) {
+        clearTimeout(speechQueueTimer);
+        speechQueueTimer = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      document.getElementById('character-avatar').classList.remove('speaking');
+      audioEl.volume = 1.0;
+    }
 
     function speakText(text) {
       currentVoiceText = text;
@@ -1313,31 +1362,70 @@
         return;
       }
 
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'es-CL';
-      utterance.rate = 1.02;
-      utterance.pitch = 1.05;
+      stopSpeech();
+      if (!selectedNaturalVoice) {
+        selectedNaturalVoice = pickBestNaturalSpanishVoice();
+      }
 
-      // Atenúa suavemente la música de fondo mientras habla la voz del modal
-      utterance.onstart = () => {
-        avatar.classList.add('speaking');
-        if (!audioEl.paused) audioEl.volume = 0.22;
-      };
-      const restoreVolume = () => {
-        avatar.classList.remove('speaking');
-        audioEl.volume = 1.0;
-      };
-      utterance.onend = restoreVolume;
-      utterance.onerror = restoreVolume;
+      // Divide el texto en frases cortas para dar pausas respiratorias naturales y evitar el efecto robot
+      const sentences = text
+        .split(/(?<=[.!?])\s+/)
+        .map(s => s.trim())
+        .filter(Boolean);
 
-      window.speechSynthesis.speak(utterance);
+      let index = 0;
+
+      function speakNextSentence() {
+        if (voiceMuted || index >= sentences.length) {
+          avatar.classList.remove('speaking');
+          audioEl.volume = 1.0;
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(sentences[index]);
+        if (selectedNaturalVoice) {
+          utterance.voice = selectedNaturalVoice;
+          utterance.lang = selectedNaturalVoice.lang;
+        } else {
+          utterance.lang = 'es-CL';
+        }
+
+        // Ritmo calmado, cordial y juvenil (ni acelerado ni plano)
+        utterance.rate = 0.88;
+        utterance.pitch = 1.12;
+        utterance.volume = 1.0;
+
+        utterance.onstart = () => {
+          avatar.classList.add('speaking');
+          if (!audioEl.paused) audioEl.volume = 0.20;
+        };
+
+        utterance.onend = () => {
+          index++;
+          if (index < sentences.length && !voiceMuted) {
+            // Pausa amable entre frases
+            speechQueueTimer = setTimeout(speakNextSentence, 260);
+          } else {
+            avatar.classList.remove('speaking');
+            audioEl.volume = 1.0;
+          }
+        };
+
+        utterance.onerror = () => {
+          avatar.classList.remove('speaking');
+          audioEl.volume = 1.0;
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      speakNextSentence();
     }
 
     const MODALS_DATA = {
       'modal-evento': {
         title: 'La Gala y Sorpresas',
-        voice: 'Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta gala es exclusiva para los alumnos del octavo básico A. ¡Se vienen muchas sorpresas, vayan preparados para sacarse fotos con sus amigos, pasarla bien y comer muy rico!',
+        voice: '¡Hola! Qué alegría invitarlos a nuestra Gran Gala del Octavo Básico A. Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta fiesta está pensada especialmente para los alumnos del curso. ¡Se vienen muchas sorpresas, así que vengan con ganas de sacarse fotos con sus amigos, pasarlo increíble y comer muy rico!',
         html: `
           <div class="info-card-clean">
             <strong>Fecha y Horario:</strong> Viernes 18 de diciembre, de 21:00 a 01:00 hrs.
@@ -1350,7 +1438,7 @@
       },
       'modal-dresscode': {
         title: 'Dress Code Semiformal',
-        voice: 'El código de vestimenta es semiformal y cómodo para bailar. Las niñas pueden asistir con vestido, no largo de gala, o con pantalón cómodo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y blazer o chaleco sin mangas.',
+        voice: 'Para que disfruten y bailen con toda comodidad, el estilo de nuestra gala es semiformal. Las niñas pueden venir con un vestido cómodo que no sea largo de gala, o con un conjunto de pantalón muy lindo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y un blazer o chaleco sin mangas.',
         html: `
           <div class="info-card-clean">
             <strong>Niñas:</strong> Vestido (no largo de gala) o conjunto de pantalón cómodo con estilo semiformal, ideal para moverse y bailar.
@@ -1362,7 +1450,7 @@
       },
       'modal-musica': {
         title: 'Playlist 8° Básico A',
-        voice: '¡Arma la música de tu fiesta! Escribe tu nombre y la canción que no puede faltar en la pista para enviarla directo a la playlist del curso.',
+        voice: '¡Queremos escuchar tus temas favoritos en la pista! Escribe tu nombre y la canción que no puede faltar esa noche, para sumarla directo a la playlist oficial del curso.',
         html: `
           <p>Pide las canciones que quieres escuchar esa noche para armar la playlist oficial del curso:</p>
           <input type="text" id="input-student-name" class="clean-input" placeholder="Tu nombre y apellido" />
@@ -1372,7 +1460,7 @@
       },
       'modal-consultas': {
         title: 'Consultas Directas',
-        voice: '¿Tienes alguna duda puntual sobre la gala? Escribe tu consulta aquí y te conectamos directo por WhatsApp.',
+        voice: '¿Tienes alguna duda sobre la gala? Escríbenos tu pregunta aquí mismo y te respondemos directo por WhatsApp con mucho gusto.',
         html: `
           <p>Si necesitas resolver alguna duda específica sobre la jornada, envíanos un mensaje directo:</p>
           <input type="text" id="input-query-text" class="clean-input" placeholder="Escribe tu consulta aquí..." />
@@ -1420,9 +1508,7 @@
 
     function closeModal() {
       backdrop.classList.remove('active');
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      document.getElementById('character-avatar').classList.remove('speaking');
-      audioEl.volume = 1.0;
+      stopSpeech();
     }
 
     document.querySelectorAll('.glass-action-btn').forEach(btn => {
@@ -1450,10 +1536,8 @@
     document.getElementById('btn-mute-voice').addEventListener('click', (e) => {
       voiceMuted = !voiceMuted;
       e.target.textContent = voiceMuted ? 'Activar voz' : 'Silenciar';
-      if (voiceMuted && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        document.getElementById('character-avatar').classList.remove('speaking');
-        audioEl.volume = 1.0;
+      if (voiceMuted) {
+        stopSpeech();
       } else {
         speakText(currentVoiceText);
       }
