@@ -627,7 +627,6 @@
       cursor: pointer;
     }
 
-    /* Caja superior con icono temático elegante acorde al texto */
     .topic-voice-banner {
       width: 100%;
       border-radius: 18px;
@@ -995,6 +994,7 @@
     let audioPlaylist = [];
     let currentTrackIdx = 0;
     let userManuallyPaused = false;
+    let isModalOpen = false;
 
     function updateAudioUI(isPlaying) {
       if (isPlaying) {
@@ -1093,6 +1093,7 @@
 
       if (audioEl.paused) {
         userManuallyPaused = false;
+        audioEl.muted = isModalOpen;
         audioEl.play().then(() => updateAudioUI(true)).catch(() => {});
       } else {
         userManuallyPaused = true;
@@ -1204,7 +1205,6 @@
       const voices = window.speechSynthesis.getVoices();
       if (!voices.length) return null;
 
-      // Excluye explícitamente acentos de España (es-ES y voces castellanas peninsulares)
       const isSpainAccent = (v) => {
         const lang = (v.lang || '').toLowerCase();
         const name = (v.name || '').toLowerCase();
@@ -1222,7 +1222,6 @@
         return lang.startsWith('es') && !isSpainAccent(v);
       });
 
-      // Prioridad de regiones y voces cálidas latinoamericanas
       const latinLangPriority = [
         'es-cl', 'es-mx', 'es-ar', 'es-co', 'es-pe', 'es-us', 'es-419'
       ];
@@ -1262,7 +1261,6 @@
         window.speechSynthesis.cancel();
       }
       document.getElementById('modal-topic-icon').classList.remove('speaking');
-      audioEl.volume = 1.0;
     }
 
     function speakText(text) {
@@ -1291,7 +1289,6 @@
       function speakNextSentence() {
         if (voiceMuted || index >= sentences.length) {
           iconBox.classList.remove('speaking');
-          audioEl.volume = 1.0;
           return;
         }
 
@@ -1300,7 +1297,6 @@
           utterance.voice = selectedLatinVoice;
           utterance.lang = selectedLatinVoice.lang;
         } else {
-          // Fuerza código de región latinoamericano (Chile / México / Latinoamérica)
           utterance.lang = 'es-MX';
         }
 
@@ -1310,7 +1306,6 @@
 
         utterance.onstart = () => {
           iconBox.classList.add('speaking');
-          if (!audioEl.paused) audioEl.volume = 0.20;
         };
 
         utterance.onend = () => {
@@ -1319,13 +1314,11 @@
             speechQueueTimer = setTimeout(speakNextSentence, 250);
           } else {
             iconBox.classList.remove('speaking');
-            audioEl.volume = 1.0;
           }
         };
 
         utterance.onerror = () => {
           iconBox.classList.remove('speaking');
-          audioEl.volume = 1.0;
         };
 
         window.speechSynthesis.speak(utterance);
@@ -1397,6 +1390,9 @@
       const data = MODALS_DATA[key];
       if (!data) return;
 
+      isModalOpen = true;
+      audioEl.muted = true; // Silencia por completo la música de fondo mientras la ventana esté abierta
+
       modalTitle.textContent = data.title;
       modalTopicIcon.innerHTML = data.iconSvg;
       modalContent.innerHTML = data.html;
@@ -1428,8 +1424,10 @@
     }
 
     function closeModal() {
+      isModalOpen = false;
       backdrop.classList.remove('active');
       stopSpeech();
+      audioEl.muted = false; // Restaura la música de fondo al salir de la ventana
     }
 
     document.querySelectorAll('.glass-action-btn').forEach(btn => {
