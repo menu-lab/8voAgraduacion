@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Gran Gala 8° Básico A • Colegio Altazor 2026</title>
+  <title>Fiesta de Graduación 8° Básico A • Colegio Altazor 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -11,14 +11,14 @@
   <style>
     :root {
       --ink-primary: #1a2238;
-      --ink-secondary: #4a5568;
-      --ink-muted: #718096;
-      --accent-soft: #3b5998;
+      --ink-secondary: #3b4764;
+      --ink-muted: #64748b;
+      --gold-border: rgba(212, 175, 55, 0.72);
+      --gold-highlight: rgba(245, 217, 126, 0.85);
+      --gold-glow: 0 8px 26px rgba(212, 175, 55, 0.16), 0 10px 28px rgba(26, 34, 56, 0.08);
       --accent-crimson: #9e2a3b;
-      --glass-bg: rgba(255, 255, 255, 0.58);
-      --glass-bg-strong: rgba(255, 255, 255, 0.86);
-      --glass-border: rgba(255, 255, 255, 0.85);
-      --glass-shadow: 0 10px 30px rgba(26, 34, 56, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.62);
+      --glass-bg-strong: rgba(255, 255, 255, 0.90);
     }
 
     * {
@@ -69,11 +69,11 @@
       inset: 0;
       z-index: 0;
       background:
-        radial-gradient(circle at 20% 15%, rgba(186, 230, 253, 0.65) 0%, transparent 45%),
-        radial-gradient(circle at 82% 25%, rgba(221, 214, 254, 0.55) 0%, transparent 50%),
-        radial-gradient(circle at 30% 80%, rgba(165, 243, 252, 0.55) 0%, transparent 50%),
-        radial-gradient(circle at 80% 85%, rgba(199, 210, 254, 0.6) 0%, transparent 45%),
-        linear-gradient(160deg, #e8f1fb 0%, #f5f7fc 48%, #e4ecfa 100%);
+        radial-gradient(circle at 20% 15%, rgba(186, 230, 253, 0.72) 0%, transparent 45%),
+        radial-gradient(circle at 82% 25%, rgba(196, 181, 253, 0.60) 0%, transparent 50%),
+        radial-gradient(circle at 30% 80%, rgba(165, 243, 252, 0.65) 0%, transparent 50%),
+        radial-gradient(circle at 80% 85%, rgba(199, 210, 254, 0.65) 0%, transparent 45%),
+        linear-gradient(160deg, #dde9f8 0%, #eef2f9 48%, #d8e4f8 100%);
     }
 
     #bg-video {
@@ -98,9 +98,9 @@
       z-index: 2;
       background: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.32) 0%,
-        rgba(255, 255, 255, 0.18) 50%,
-        rgba(255, 255, 255, 0.42) 100%
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.14) 50%,
+        rgba(255, 255, 255, 0.36) 100%
       );
       pointer-events: none;
     }
@@ -115,7 +115,7 @@
     }
 
     /* =========================================================
-       CONTROLES SUPERIORES FLOTANTES (INSIGNIA + BOTÓN MÚSICA EVIDENTE)
+       CONTROLES SUPERIORES FLOTANTES (COLEGIO ALTAZOR + MÚSICA)
     ========================================================= */
     .top-utility-bar {
       position: relative;
@@ -123,64 +123,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2.2vh 5.5% 0;
+      padding: 2.4vh 5.5% 0;
     }
 
     .school-badge-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
-      background: var(--glass-bg);
+      background: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 16px rgba(26, 34, 56, 0.05);
-    }
-
-    .school-monogram {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid rgba(26, 34, 56, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 500;
-      font-size: 10px;
-      color: var(--ink-primary);
-      letter-spacing: -0.02em;
-    }
-
-    .school-monogram span {
-      color: var(--accent-crimson);
-      font-weight: 600;
+      border: 1.2px solid var(--gold-border);
+      box-shadow: 0 4px 16px rgba(26, 34, 56, 0.06);
     }
 
     .school-badge-text {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(10px, 1.35vh, 12px);
-      font-weight: 400;
-      letter-spacing: 0.14em;
+      font-size: clamp(10.5px, 1.4vh, 12.5px);
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-primary);
     }
 
+    /* Botón de Nota Musical Evidente y Estilizado */
     .audio-btn {
       position: relative;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 15px 8px 11px;
+      padding: 7px 15px 7px 10px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.84);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid #ffffff;
-      box-shadow: 0 6px 20px rgba(26, 34, 56, 0.12);
+      border: 1.2px solid var(--gold-border);
+      box-shadow: 0 6px 20px rgba(26, 34, 56, 0.10);
       cursor: pointer;
       color: var(--ink-primary);
       transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
@@ -204,7 +183,7 @@
     }
 
     .audio-btn.playing .audio-note-circle {
-      background: var(--accent-crimson);
+      background: #b8891e;
       animation: noteBounce 1.2s infinite ease-in-out;
     }
 
@@ -213,8 +192,8 @@
     }
 
     @keyframes attentionPulse {
-      0%, 100% { box-shadow: 0 6px 20px rgba(26, 34, 56, 0.12), 0 0 0 0 rgba(158, 42, 59, 0.35); }
-      50% { box-shadow: 0 8px 24px rgba(26, 34, 56, 0.18), 0 0 0 7px rgba(158, 42, 59, 0); }
+      0%, 100% { box-shadow: 0 6px 20px rgba(26, 34, 56, 0.12), 0 0 0 0 rgba(212, 175, 55, 0.45); }
+      50% { box-shadow: 0 8px 24px rgba(26, 34, 56, 0.18), 0 0 0 7px rgba(212, 175, 55, 0); }
     }
 
     @keyframes noteBounce {
@@ -245,9 +224,9 @@
       position: relative;
       z-index: 10;
       width: 100%;
-      min-height: 17vh;
-      max-height: 20vh;
-      padding: 1vh 6% 0.5vh;
+      min-height: 21vh;
+      max-height: 24vh;
+      padding: 1.5vh 6% 0.5vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -259,14 +238,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4vh;
+      gap: 0.6vh;
     }
 
     .title-kicker {
       font-family: 'Outfit', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: clamp(11px, 1.45vh, 14px);
-      letter-spacing: 0.32em;
+      letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--ink-secondary);
     }
@@ -274,27 +253,30 @@
     .title-main {
       font-family: 'Outfit', sans-serif;
       font-weight: 200;
-      font-size: clamp(28px, 4.3vh, 42px);
-      letter-spacing: 0.12em;
+      font-size: clamp(25px, 3.8vh, 38px);
+      letter-spacing: 0.10em;
       text-transform: uppercase;
       color: var(--ink-primary);
-      line-height: 1.08;
+      line-height: 1.15;
     }
 
     .title-main strong {
+      display: block;
       font-weight: 500;
+      font-size: clamp(29px, 4.4vh, 44px);
+      letter-spacing: 0.12em;
+      margin-top: 2px;
     }
 
     .title-divider {
-      width: 48px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--ink-primary), transparent);
-      margin-top: 0.6vh;
-      opacity: 0.35;
+      width: 68px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #c9a236, transparent);
+      margin-top: 0.9vh;
     }
 
     /* =========================================================
-       RELOJ EN REVERSA ESTILIZADO Y FINO
+       RELOJ EN REVERSA ESTILIZADO CON TOQUE DORADO SUTIL
     ========================================================= */
     .countdown-strip {
       position: relative;
@@ -302,27 +284,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 0.4vh 6%;
+      gap: 11px;
+      padding: 0.5vh 6% 1.2vh;
     }
 
     .cd-pill {
-      min-width: 58px;
-      padding: 7px 10px;
-      border-radius: 14px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
+      min-width: 62px;
+      padding: 9px 11px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(226, 237, 253, 0.65));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.2px solid var(--gold-border);
       text-align: center;
-      box-shadow: 0 4px 14px rgba(26, 34, 56, 0.04);
+      box-shadow: 0 6px 18px rgba(26, 34, 56, 0.06);
     }
 
     .cd-num {
       display: block;
       font-family: 'Outfit', sans-serif;
       font-weight: 400;
-      font-size: clamp(16px, 2.3vh, 22px);
+      font-size: clamp(18px, 2.5vh, 24px);
       color: var(--ink-primary);
       letter-spacing: 0.04em;
       line-height: 1.1;
@@ -330,96 +312,16 @@
 
     .cd-lbl {
       display: block;
-      font-size: clamp(8px, 1.05vh, 10px);
+      font-size: clamp(8.5px, 1.1vh, 10.5px);
       font-weight: 400;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-top: 2px;
-    }
-
-    /* =========================================================
-       CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
-    ========================================================= */
-    .carousel-stage {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      height: 15.5vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 950px;
-      overflow: hidden;
-      margin: 0.4vh 0;
-    }
-
-    .carousel-ring {
-      position: relative;
-      width: 11vh;
-      height: 11vh;
-      transform-style: preserve-3d;
-      cursor: grab;
-    }
-
-    .carousel-ring:active {
-      cursor: grabbing;
-    }
-
-    .carousel-card {
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.92);
-      box-shadow: 0 8px 22px rgba(26, 34, 56, 0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      backface-visibility: visible;
-    }
-
-    .carousel-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .student-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(235,242,252,0.75));
       color: var(--ink-secondary);
-    }
-
-    .student-placeholder svg {
-      width: 24px;
-      height: 24px;
-      stroke-width: 1.3;
-      opacity: 0.65;
-    }
-
-    .student-placeholder span {
-      font-family: 'Outfit', sans-serif;
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.8;
+      margin-top: 3px;
     }
 
     /* =========================================================
-       BOTONERA CENTRAL SUTIL, ELEGANTE Y ANIMADA
+       BOTONERA CENTRAL: TONOS BOKEH CELESTE/LAVANDA + ORILLA DORADA
     ========================================================= */
     .menu-stack {
       position: relative;
@@ -428,19 +330,26 @@
       padding: 0.5vh 7.5%;
       display: flex;
       flex-direction: column;
-      gap: 1.45vh;
+      gap: 1.8vh;
     }
 
     .glass-action-btn {
       position: relative;
       width: 100%;
-      padding: 1.65vh 20px;
-      border-radius: 18px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
+      padding: 1.95vh 20px;
+      border-radius: 20px;
+      /* Degradado inspirado en las esferas bokeh celeste glaciar y lavanda suave de la imagen */
+      background: linear-gradient(
+        135deg,
+        rgba(222, 239, 255, 0.78) 0%,
+        rgba(235, 232, 253, 0.74) 52%,
+        rgba(212, 238, 252, 0.80) 100%
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      /* Orilla dorada fina para contraste elegante */
+      border: 1.4px solid var(--gold-border);
+      box-shadow: var(--gold-glow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -450,7 +359,7 @@
       opacity: 0;
       transform: translateY(16px);
       animation: btnReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), background 0.28s ease, box-shadow 0.28s ease;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
     }
 
     .glass-action-btn:nth-child(1) { animation-delay: 0.15s; }
@@ -466,13 +375,19 @@
     }
 
     .glass-action-btn:hover {
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 12px 32px rgba(26, 34, 56, 0.12);
+      background: linear-gradient(
+        135deg,
+        rgba(234, 245, 255, 0.90) 0%,
+        rgba(242, 239, 255, 0.88) 52%,
+        rgba(226, 244, 255, 0.92) 100%
+      );
+      border-color: var(--gold-highlight);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.24), 0 12px 30px rgba(26, 34, 56, 0.11);
     }
 
     .glass-action-btn.tapped {
       transform: scale(0.96);
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
     }
 
     .btn-left-group {
@@ -482,16 +397,17 @@
     }
 
     .btn-icon-circle {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(212, 175, 55, 0.55);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--ink-primary);
       flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(26, 34, 56, 0.05);
     }
 
     .btn-icon-circle svg {
@@ -509,58 +425,62 @@
     .btn-title {
       font-family: 'Outfit', sans-serif;
       font-weight: 500;
-      font-size: clamp(14px, 1.9vh, 17px);
+      font-size: clamp(14.5px, 2vh, 17.5px);
       letter-spacing: 0.04em;
       color: var(--ink-primary);
     }
 
     .btn-subtitle {
       font-weight: 300;
-      font-size: clamp(11px, 1.35vh, 12.5px);
+      font-size: clamp(11px, 1.38vh, 12.8px);
       letter-spacing: 0.02em;
       color: var(--ink-secondary);
     }
 
     .touch-hint-icon {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--ink-secondary);
-      opacity: 0.65;
+      color: #9e7b22;
+      opacity: 0.78;
       animation: gentleTap 2.2s infinite ease-in-out;
     }
 
     .touch-hint-icon svg {
       width: 17px;
       height: 17px;
-      stroke-width: 1.4;
+      stroke-width: 1.5;
     }
 
     @keyframes gentleTap {
-      0%, 100% { transform: scale(1); opacity: 0.55; }
-      50% { transform: scale(0.88); opacity: 0.95; }
+      0%, 100% { transform: scale(1); opacity: 0.65; }
+      50% { transform: scale(0.88); opacity: 1; }
     }
 
     /* =========================================================
-       FOOTER FIJO INFERIOR (EXCLUSIVO UBICACIÓN -> GOOGLE MAPS)
+       FOOTER FIJO INFERIOR (UBICACIÓN -> GOOGLE MAPS + ORILLA DORADA)
     ========================================================= */
     .location-footer {
       position: relative;
       z-index: 12;
-      padding: 1.2vh 7.5% 2.4vh;
+      padding: 1.2vh 7.5% 2.6vh;
     }
 
     .location-link-card {
       width: 100%;
-      padding: 1.5vh 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 8px 26px rgba(26, 34, 56, 0.08);
+      padding: 1.65vh 18px;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(235, 244, 255, 0.84) 0%,
+        rgba(244, 242, 255, 0.82) 100%
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.4px solid var(--gold-border);
+      box-shadow: var(--gold-glow);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -580,11 +500,11 @@
     }
 
     .loc-pin-box {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: #ffffff;
-      border: 1px solid rgba(26, 34, 56, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -601,15 +521,16 @@
     .loc-address {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 400;
-      font-size: clamp(11.5px, 1.45vh, 13.5px);
+      font-size: clamp(11.5px, 1.48vh, 13.8px);
       line-height: 1.35;
       color: var(--ink-primary);
     }
 
     .loc-cta-pill {
-      padding: 6px 12px;
+      padding: 7px 13px;
       border-radius: 999px;
       background: var(--ink-primary);
+      border: 1px solid rgba(212, 175, 55, 0.65);
       color: #ffffff;
       font-family: 'Outfit', sans-serif;
       font-weight: 400;
@@ -626,7 +547,7 @@
       position: absolute;
       inset: 0;
       z-index: 35;
-      background: rgba(20, 28, 48, 0.28);
+      background: rgba(20, 28, 48, 0.30);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       display: flex;
@@ -650,8 +571,8 @@
       background: var(--glass-bg-strong);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-      border: 1px solid #ffffff;
-      box-shadow: 0 24px 60px rgba(20, 28, 48, 0.18);
+      border: 1.4px solid var(--gold-border);
+      box-shadow: 0 24px 60px rgba(20, 28, 48, 0.20);
       padding: 24px 22px;
       display: flex;
       flex-direction: column;
@@ -680,8 +601,8 @@
     .voice-chip-btn {
       padding: 5px 11px;
       border-radius: 999px;
-      border: 1px solid rgba(26, 34, 56, 0.12);
-      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(255, 255, 255, 0.85);
       font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 400;
@@ -696,7 +617,7 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      border: 1px solid rgba(26, 34, 56, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.55);
       background: #ffffff;
       color: var(--ink-primary);
       font-size: 16px;
@@ -711,8 +632,8 @@
       width: 100%;
       min-height: 76px;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(236,243,253,0.75));
-      border: 1px dashed rgba(26, 34, 56, 0.16);
+      background: linear-gradient(135deg, rgba(235, 244, 255, 0.85), rgba(242, 239, 255, 0.80));
+      border: 1px dashed rgba(212, 175, 55, 0.65);
       display: flex;
       align-items: center;
       gap: 14px;
@@ -724,7 +645,7 @@
       height: 56px;
       border-radius: 14px;
       background: #ffffff;
-      border: 1px solid rgba(26, 34, 56, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -777,16 +698,16 @@
     .info-card-clean {
       padding: 12px 14px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(26, 34, 56, 0.06);
+      background: rgba(235, 244, 255, 0.55);
+      border: 1px solid rgba(212, 175, 55, 0.45);
     }
 
     .clean-input {
       width: 100%;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(26, 34, 56, 0.14);
-      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(255, 255, 255, 0.92);
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 13.5px;
       font-weight: 300;
@@ -795,14 +716,14 @@
     }
 
     .clean-input:focus {
-      border-color: var(--ink-primary);
+      border-color: #b8891e;
     }
 
     .primary-pill-action {
       width: 100%;
       padding: 13px 18px;
       border-radius: 14px;
-      border: none;
+      border: 1px solid var(--gold-border);
       background: var(--ink-primary);
       color: #ffffff;
       font-family: 'Outfit', sans-serif;
@@ -835,10 +756,9 @@
     <!-- Capa 40: Confeti sutil al tocar botones -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- Barra Superior Minimalista: Insignia Altazor + Botón Evidente de Nota Musical -->
+    <!-- Barra Superior Minimalista: Solo Colegio Altazor + Botón de Nota Musical -->
     <div class="top-utility-bar">
       <div class="school-badge-pill">
-        <div class="school-monogram">C<span>A</span></div>
         <span class="school-badge-text">Colegio Altazor</span>
       </div>
 
@@ -856,11 +776,9 @@
 
     <!-- Espacio Superior Reservado para Encabezado PNG Transparente -->
     <header id="header-banner-slot">
-      <!-- Cuando tengas tu PNG transparente, reemplaza este bloque por:
-           <img src="titulo_gala.png" alt="Gran Gala Octavo A 2026" style="max-height: 100%; max-width: 92%; object-fit: contain;" /> -->
       <div class="elegant-title-guide">
         <span class="title-kicker">Generación 2026</span>
-        <h1 class="title-main">Gran Gala <strong>8°A</strong></h1>
+        <h1 class="title-main">Fiesta de Graduación <strong>8° Básico A</strong></h1>
         <div class="title-divider"></div>
       </div>
     </header>
@@ -873,20 +791,15 @@
       <div class="cd-pill"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl">Seg</span></div>
     </section>
 
-    <!-- Carrusel Circular 3D Automático (Fotos del Curso) -->
-    <section class="carousel-stage" aria-label="Galería 8° Básico A">
-      <div class="carousel-ring" id="carousel-ring"></div>
-    </section>
-
-    <!-- Botonera Central Translúcida con Aparición Escalonada -->
-    <nav class="menu-stack" aria-label="Opciones de la gala">
+    <!-- Botonera Central Translúcida con Tonos Bokeh y Orilla Dorada -->
+    <nav class="menu-stack" aria-label="Opciones de la fiesta de graduación">
       <button class="glass-action-btn" data-modal="modal-evento">
         <div class="btn-left-group">
           <div class="btn-icon-circle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
           <div class="btn-text-group">
-            <span class="btn-title">La Gala y Sorpresas</span>
+            <span class="btn-title">La Fiesta y Sorpresas</span>
             <span class="btn-subtitle">Viernes 18 de diciembre • 21:00 a 01:00 hrs</span>
           </div>
         </div>
@@ -963,7 +876,7 @@
     </footer>
 
     <!-- =========================================================
-         VENTANAS EMERGENTES (MODALES CON VOZ + SLOT PERSONAJE)
+         VENTANAS EMERGENTES (MODALES FINOS + SLOT PERSONAJE + VOZ)
     ========================================================= -->
     <div class="modal-backdrop" id="modal-backdrop">
       <div class="modal-sheet" role="dialog" aria-modal="true">
@@ -980,7 +893,7 @@
           <div class="character-avatar-box" id="character-avatar">
             <span>Personaje</span>
           </div>
-          <p class="character-speech-hint" id="modal-voice-caption">Escuchando información de la gala...</p>
+          <p class="character-speech-hint" id="modal-voice-caption">Escuchando información de la fiesta...</p>
         </div>
 
         <h2 class="modal-heading" id="modal-title">Título</h2>
@@ -994,28 +907,49 @@
 
   <script>
     /* =====================================================================
-       1. CONFIGURACIÓN EDITABLE (VIDEOS, MÚSICA 1.MP3/2.MP3, WHATSAPP, FOTOS)
+       1. CONFIGURACIÓN EDITABLE (VIDEOS, MÚSICA 1.MP3/2.MP3, WHATSAPP)
     ===================================================================== */
     const CONFIG = {
       EVENT_DATE: '2026-12-18T21:00:00-03:00',
-      WHATSAPP_DJ: '56900000000',        // Tu número de WhatsApp para pedidos musicales (ej: 56912345678)
-      WHATSAPP_DIRECTIVA: '56900000000', // Número de WhatsApp para consultas directas
+      WHATSAPP_DJ: '56991081769',        // +56 9 9108 1769 (Playlist del curso)
+      WHATSAPP_DIRECTIVA: '56999357466', // +56 9 9935 7466 (Consultas directas)
       VIDEO_PREFIX: 'video',             // Busca automáticamente video1.mp4, video2.mp4, video3.mp4...
       VIDEO_EXT: '.mp4',
-      AUDIO_EXT: '.mp3',                 // Busca automáticamente 1.mp3, 2.mp3, 3.mp3...
-      FOTOS_CURSO: [
-        { nombre: 'Alumno 1', img: '' },
-        { nombre: 'Alumno 2', img: '' },
-        { nombre: 'Alumno 3', img: '' },
-        { nombre: 'Alumno 4', img: '' },
-        { nombre: 'Alumno 5', img: '' },
-        { nombre: 'Alumno 6', img: '' },
-        { nombre: 'Alumno 7', img: '' },
-        { nombre: 'Alumno 8', img: '' },
-        { nombre: 'Alumno 9', img: '' },
-        { nombre: 'Alumno 10', img: '' }
-      ]
+      AUDIO_EXT: '.mp3'                  // Busca automáticamente 1.mp3, 2.mp3, 3.mp3...
     };
+
+    /* =====================================================================
+       SONDEO NATIVO DE ARCHIVOS MULTIMEDIA (COMPATIBLE CON FILE:// Y WEB)
+    ===================================================================== */
+    function checkVideoExists(src) {
+      return new Promise((resolve) => {
+        const testVid = document.createElement('video');
+        testVid.preload = 'metadata';
+        testVid.onloadedmetadata = () => {
+          testVid.src = '';
+          resolve(true);
+        };
+        testVid.onerror = () => {
+          resolve(false);
+        };
+        testVid.src = src;
+      });
+    }
+
+    function checkAudioExists(src) {
+      return new Promise((resolve) => {
+        const testAud = new Audio();
+        testAud.preload = 'metadata';
+        testAud.onloadedmetadata = () => {
+          testAud.src = '';
+          resolve(true);
+        };
+        testAud.onerror = () => {
+          resolve(false);
+        };
+        testAud.src = src;
+      });
+    }
 
     /* =====================================================================
        2. DETECCIÓN AUTOMÁTICA Y ROTACIÓN SIN REPETICIÓN DE VIDEOS MP4
@@ -1026,14 +960,10 @@
 
       for (let i = 1; i <= 30; i++) {
         const candidate = `${CONFIG.VIDEO_PREFIX}${i}${CONFIG.VIDEO_EXT}`;
-        try {
-          const response = await fetch(candidate, { method: 'HEAD' });
-          if (response.ok) {
-            availableVideos.push(candidate);
-          } else {
-            break;
-          }
-        } catch (err) {
+        const exists = await checkVideoExists(candidate);
+        if (exists) {
+          availableVideos.push(candidate);
+        } else {
           break;
         }
       }
@@ -1075,21 +1005,21 @@
     }
 
     async function initDynamicMusicPlayer() {
-      for (let i = 1; i <= 30; i++) {
+      const firstTrack = `1${CONFIG.AUDIO_EXT}`;
+      const hasFirst = await checkAudioExists(firstTrack);
+      if (!hasFirst) return;
+
+      audioPlaylist.push(firstTrack);
+
+      for (let i = 2; i <= 30; i++) {
         const candidate = `${i}${CONFIG.AUDIO_EXT}`;
-        try {
-          const response = await fetch(candidate, { method: 'HEAD' });
-          if (response.ok) {
-            audioPlaylist.push(candidate);
-          } else {
-            break;
-          }
-        } catch (err) {
+        const exists = await checkAudioExists(candidate);
+        if (exists) {
+          audioPlaylist.push(candidate);
+        } else {
           break;
         }
       }
-
-      if (audioPlaylist.length === 0) return;
 
       const lastTrack = localStorage.getItem('gala8a_last_track');
       let pool = audioPlaylist.filter(t => t !== lastTrack);
@@ -1099,6 +1029,7 @@
       localStorage.setItem('gala8a_last_track', initialTrack);
 
       audioEl.src = audioPlaylist[currentTrackIdx];
+      audioEl.volume = 1.0;
 
       audioEl.addEventListener('ended', () => {
         currentTrackIdx = (currentTrackIdx + 1) % audioPlaylist.length;
@@ -1106,8 +1037,28 @@
         audioEl.play().then(() => updateAudioUI(true)).catch(() => updateAudioUI(false));
       });
 
+      audioEl.addEventListener('error', () => {
+        if (audioPlaylist.length > 1) {
+          currentTrackIdx = (currentTrackIdx + 1) % audioPlaylist.length;
+          audioEl.src = audioPlaylist[currentTrackIdx];
+          audioEl.play().catch(() => {});
+        }
+      });
+
+      const removeUnlockListeners = () => {
+        document.removeEventListener('pointerdown', tryAutoPlay);
+        document.removeEventListener('touchstart', tryAutoPlay);
+        document.removeEventListener('click', tryAutoPlay);
+        document.removeEventListener('keydown', tryAutoPlay);
+      };
+
       const tryAutoPlay = () => {
         if (userManuallyPaused || audioPlaylist.length === 0) return;
+        if (!audioEl.paused) {
+          updateAudioUI(true);
+          removeUnlockListeners();
+          return;
+        }
         audioEl.play()
           .then(() => {
             updateAudioUI(true);
@@ -1118,22 +1069,26 @@
           });
       };
 
-      const removeUnlockListeners = () => {
-        document.removeEventListener('pointerdown', tryAutoPlay);
-        document.removeEventListener('keydown', tryAutoPlay);
-      };
-
       tryAutoPlay();
-      document.addEventListener('pointerdown', tryAutoPlay);
+      document.addEventListener('pointerdown', tryAutoPlay, { passive: true });
+      document.addEventListener('touchstart', tryAutoPlay, { passive: true });
+      document.addEventListener('click', tryAutoPlay);
       document.addEventListener('keydown', tryAutoPlay);
     }
 
     audioBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (audioPlaylist.length === 0) {
-        audioBtn.classList.toggle('playing');
+        audioEl.src = `1${CONFIG.AUDIO_EXT}`;
+        audioEl.play().then(() => {
+          audioPlaylist = [`1${CONFIG.AUDIO_EXT}`];
+          updateAudioUI(true);
+        }).catch(() => {
+          audioBtn.classList.toggle('playing');
+        });
         return;
       }
+
       if (audioEl.paused) {
         userManuallyPaused = false;
         audioEl.play().then(() => updateAudioUI(true)).catch(() => {});
@@ -1174,63 +1129,7 @@
     }
 
     /* =====================================================================
-       5. CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
-    ===================================================================== */
-    function init3DCarousel() {
-      const ring = document.getElementById('carousel-ring');
-      const items = CONFIG.FOTOS_CURSO;
-      const total = items.length;
-      const stepAngle = 360 / total;
-      const radius = Math.round((window.innerHeight * 0.11) / (2 * Math.tan(Math.PI / total))) + 38;
-
-      items.forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = 'carousel-card';
-        card.style.transform = `rotateY(${idx * stepAngle}deg) translateZ(${radius}px)`;
-
-        if (item.img) {
-          card.innerHTML = `<img src="${item.img}" alt="${item.nombre}" loading="lazy" />`;
-        } else {
-          card.innerHTML = `
-            <div class="student-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.8-4 14.2-4 16 0"/></svg>
-              <span>${item.nombre}</span>
-            </div>
-          `;
-        }
-        ring.appendChild(card);
-      });
-
-      let angle = 0;
-      let isDragging = false;
-      let startX = 0;
-
-      function animate() {
-        if (!isDragging) {
-          angle -= 0.28;
-        }
-        ring.style.transform = `rotateY(${angle}deg)`;
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
-
-      ring.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        startX = e.clientX;
-      });
-      window.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const delta = e.clientX - startX;
-        startX = e.clientX;
-        angle += delta * 0.45;
-      });
-      window.addEventListener('pointerup', () => {
-        isDragging = false;
-      });
-    }
-
-    /* =====================================================================
-       6. DESTELLOS DE CONFETI SUTIL AL TOCAR BOTONES
+       5. DESTELLOS DE CONFETI SUTIL (DORADO Y TONOS BOKEH) AL TOCAR BOTONES
     ===================================================================== */
     const confettiCanvas = document.getElementById('confetti-canvas');
     const ctx = confettiCanvas.getContext('2d');
@@ -1248,9 +1147,9 @@
       const rect = confettiCanvas.getBoundingClientRect();
       const x = clientX - rect.left;
       const y = clientY - rect.top;
-      const colors = ['#ffffff', '#a5d8ff', '#d0bfff', '#1a2238', '#9e2a3b'];
+      const colors = ['#d4af37', '#f5d97e', '#ffffff', '#bae6fd', '#ddd6fe'];
 
-      for (let i = 0; i < 26; i++) {
+      for (let i = 0; i < 28; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = 1.5 + Math.random() * 4.2;
         particles.push({
@@ -1291,7 +1190,7 @@
     updateConfetti();
 
     /* =====================================================================
-       7. VOZ NATURAL, CÁLIDA, PAUSADA Y JUVENIL + VENTANAS EMERGENTES
+       6. VOZ NATURAL, CÁLIDA, PAUSADA Y JUVENIL + VENTANAS EMERGENTES
     ===================================================================== */
     let voiceMuted = false;
     let currentVoiceText = '';
@@ -1303,14 +1202,13 @@
       const voices = window.speechSynthesis.getVoices();
       if (!voices.length) return null;
 
-      // Prioriza voces de alta naturalidad/neuronales en español latino y español general
       const preferredNames = [
         'google español',
-        'dalia',      // Microsoft Natural México (muy cálida y juvenil)
-        'paulina',    // Apple / macOS / iOS español latino natural
-        'catalina',   // Apple español Chile
-        'sabina',     // Microsoft español
-        'camila',     // Amazon / Edge natural
+        'dalia',
+        'paulina',
+        'catalina',
+        'sabina',
+        'camila',
         'paloma',
         'mónica',
         'monica',
@@ -1328,7 +1226,6 @@
         if (match) return match;
       }
 
-      // Evita voces masculinas muy graves si hay una opción femenina/juvenil más amable
       return spanishVoices[0];
     }
 
@@ -1367,7 +1264,6 @@
         selectedNaturalVoice = pickBestNaturalSpanishVoice();
       }
 
-      // Divide el texto en frases cortas para dar pausas respiratorias naturales y evitar el efecto robot
       const sentences = text
         .split(/(?<=[.!?])\s+/)
         .map(s => s.trim())
@@ -1390,7 +1286,6 @@
           utterance.lang = 'es-CL';
         }
 
-        // Ritmo calmado, cordial y juvenil (ni acelerado ni plano)
         utterance.rate = 0.88;
         utterance.pitch = 1.12;
         utterance.volume = 1.0;
@@ -1403,7 +1298,6 @@
         utterance.onend = () => {
           index++;
           if (index < sentences.length && !voiceMuted) {
-            // Pausa amable entre frases
             speechQueueTimer = setTimeout(speakNextSentence, 260);
           } else {
             avatar.classList.remove('speaking');
@@ -1424,21 +1318,21 @@
 
     const MODALS_DATA = {
       'modal-evento': {
-        title: 'La Gala y Sorpresas',
-        voice: '¡Hola! Qué alegría invitarlos a nuestra Gran Gala del Octavo Básico A. Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta fiesta está pensada especialmente para los alumnos del curso. ¡Se vienen muchas sorpresas, así que vengan con ganas de sacarse fotos con sus amigos, pasarlo increíble y comer muy rico!',
+        title: 'La Fiesta y Sorpresas',
+        voice: '¡Hola! Qué alegría invitarlos a nuestra Fiesta de Graduación del Octavo Básico A. Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta celebración está pensada especialmente para los alumnos del curso. ¡Se vienen muchas sorpresas, así que vengan con ganas de sacarse fotos con sus amigos, pasarlo increíble y comer muy rico!',
         html: `
           <div class="info-card-clean">
             <strong>Fecha y Horario:</strong> Viernes 18 de diciembre, de 21:00 a 01:00 hrs.
           </div>
           <div class="info-card-clean">
-            <strong>Modalidad Exclusiva Alumnos:</strong> Fiesta pensada solo para los estudiantes de 8° Básico A (apoderados dejan y retiran en el recinto).
+            <strong>Modalidad Exclusiva Alumnos:</strong> Celebración pensada solo para los estudiantes de 8° Básico A (apoderados dejan y retiran en el recinto).
           </div>
           <p>¡Se vienen muchas sorpresas! Vayan preparados para sacarse fotografías con sus amigos, pasarla bien y comer muy rico.</p>
         `
       },
       'modal-dresscode': {
         title: 'Dress Code Semiformal',
-        voice: 'Para que disfruten y bailen con toda comodidad, el estilo de nuestra gala es semiformal. Las niñas pueden venir con un vestido cómodo que no sea largo de gala, o con un conjunto de pantalón muy lindo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y un blazer o chaleco sin mangas.',
+        voice: 'Para que disfruten y bailen con toda comodidad, el estilo de nuestra fiesta de graduación es semiformal. Las niñas pueden venir con un vestido cómodo que no sea largo de gala, o con un conjunto de pantalón muy lindo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y un blazer o chaleco sin mangas.',
         html: `
           <div class="info-card-clean">
             <strong>Niñas:</strong> Vestido (no largo de gala) o conjunto de pantalón cómodo con estilo semiformal, ideal para moverse y bailar.
@@ -1460,7 +1354,7 @@
       },
       'modal-consultas': {
         title: 'Consultas Directas',
-        voice: '¿Tienes alguna duda sobre la gala? Escríbenos tu pregunta aquí mismo y te respondemos directo por WhatsApp con mucho gusto.',
+        voice: '¿Tienes alguna duda sobre la fiesta de graduación? Escríbenos tu pregunta aquí mismo y te respondemos directo por WhatsApp con mucho gusto.',
         html: `
           <p>Si necesitas resolver alguna duda específica sobre la jornada, envíanos un mensaje directo:</p>
           <input type="text" id="input-query-text" class="clean-input" placeholder="Escribe tu consulta aquí..." />
@@ -1491,7 +1385,7 @@
             alert('Escribe el nombre de la canción que deseas pedir.');
             return;
           }
-          const msg = encodeURIComponent(`Hola! Soy ${name} (8° Básico A) y pido esta canción para la Gala: ${song}`);
+          const msg = encodeURIComponent(`Hola! Soy ${name} (8° Básico A) y pido esta canción para la Fiesta de Graduación: ${song}`);
           window.open(`https://wa.me/${CONFIG.WHATSAPP_DJ}?text=${msg}`, '_blank');
         });
       }
@@ -1499,7 +1393,7 @@
       const btnQuery = document.getElementById('btn-send-query');
       if (btnQuery) {
         btnQuery.addEventListener('click', () => {
-          const query = document.getElementById('input-query-text').value.trim() || 'Hola, tengo una consulta sobre la Gran Gala 8°A.';
+          const query = document.getElementById('input-query-text').value.trim() || 'Hola, tengo una consulta sobre la Fiesta de Graduación 8°A.';
           const msg = encodeURIComponent(query);
           window.open(`https://wa.me/${CONFIG.WHATSAPP_DIRECTIVA}?text=${msg}`, '_blank');
         });
@@ -1549,7 +1443,6 @@
     initDynamicVideoBackground();
     initDynamicMusicPlayer();
     initCountdown();
-    init3DCarousel();
   </script>
 </body>
 </html>
