@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Fiesta de Graduación 8° Básico A • Colegio Altazor 2026</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -147,7 +149,6 @@
       color: var(--ink-primary);
     }
 
-    /* Botón de Nota Musical Evidente y Estilizado */
     .audio-btn {
       position: relative;
       display: inline-flex;
@@ -338,7 +339,6 @@
       width: 100%;
       padding: 1.95vh 20px;
       border-radius: 20px;
-      /* Degradado inspirado en las esferas bokeh celeste glaciar y lavanda suave de la imagen */
       background: linear-gradient(
         135deg,
         rgba(222, 239, 255, 0.78) 0%,
@@ -347,7 +347,6 @@
       );
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      /* Orilla dorada fina para contraste elegante */
       border: 1.4px solid var(--gold-border);
       box-shadow: var(--gold-glow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       display: flex;
@@ -541,7 +540,7 @@
     }
 
     /* =========================================================
-       VENTANAS EMERGENTES (MODALES FINOS + SLOT PERSONAJE + VOZ)
+       VENTANAS EMERGENTES (MODALES FINOS + ICONO TEMÁTICO + VOZ)
     ========================================================= */
     .modal-backdrop {
       position: absolute;
@@ -628,48 +627,53 @@
       cursor: pointer;
     }
 
-    .character-modal-slot {
+    /* Caja superior con icono temático elegante acorde al texto */
+    .topic-voice-banner {
       width: 100%;
-      min-height: 76px;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(235, 244, 255, 0.85), rgba(242, 239, 255, 0.80));
-      border: 1px dashed rgba(212, 175, 55, 0.65);
+      background: linear-gradient(135deg, rgba(235, 244, 255, 0.88), rgba(242, 239, 255, 0.84));
+      border: 1px solid rgba(212, 175, 55, 0.55);
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 10px 14px;
+      padding: 12px 14px;
     }
 
-    .character-avatar-box {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+    .topic-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
       background: #ffffff;
-      border: 1px solid rgba(212, 175, 55, 0.45);
+      border: 1.2px solid rgba(212, 175, 55, 0.65);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.14);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--ink-primary);
       flex-shrink: 0;
-      overflow: hidden;
-      font-size: 10px;
-      color: var(--ink-muted);
-      text-align: center;
     }
 
-    .character-avatar-box.speaking {
-      animation: characterTalk 0.45s infinite alternate ease-in-out;
+    .topic-icon-box svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.5;
     }
 
-    @keyframes characterTalk {
-      from { transform: translateY(0) scale(1); }
-      to { transform: translateY(-3px) scale(1.03); }
+    .topic-icon-box.speaking {
+      animation: iconPulseTalk 0.55s infinite alternate ease-in-out;
+      border-color: #c9a236;
+    }
+
+    @keyframes iconPulseTalk {
+      from { transform: scale(1); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15); }
+      to { transform: scale(1.06); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.38); }
     }
 
     .character-speech-hint {
       font-size: 12px;
       font-weight: 300;
       color: var(--ink-secondary);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .modal-heading {
@@ -876,7 +880,7 @@
     </footer>
 
     <!-- =========================================================
-         VENTANAS EMERGENTES (MODALES FINOS + SLOT PERSONAJE + VOZ)
+         VENTANAS EMERGENTES (MODALES FINOS + ICONO TEMÁTICO + VOZ LATINA)
     ========================================================= -->
     <div class="modal-backdrop" id="modal-backdrop">
       <div class="modal-sheet" role="dialog" aria-modal="true">
@@ -888,11 +892,9 @@
           <button class="close-modal-btn" id="btn-close-modal" type="button" aria-label="Cerrar">✕</button>
         </div>
 
-        <!-- Espacio reservado para el personaje animado -->
-        <div class="character-modal-slot">
-          <div class="character-avatar-box" id="character-avatar">
-            <span>Personaje</span>
-          </div>
+        <!-- Caja con icono acorde al contenido de cada ventana -->
+        <div class="topic-voice-banner">
+          <div class="topic-icon-box" id="modal-topic-icon"></div>
           <p class="character-speech-hint" id="modal-voice-caption">Escuchando información de la fiesta...</p>
         </div>
 
@@ -1190,50 +1192,65 @@
     updateConfetti();
 
     /* =====================================================================
-       6. VOZ NATURAL, CÁLIDA, PAUSADA Y JUVENIL + VENTANAS EMERGENTES
+       6. VOZ ESTRICTAMENTE EN ESPAÑOL LATINO (SIN ACENTO DE ESPAÑA)
     ===================================================================== */
     let voiceMuted = false;
     let currentVoiceText = '';
-    let selectedNaturalVoice = null;
+    let selectedLatinVoice = null;
     let speechQueueTimer = null;
 
-    function pickBestNaturalSpanishVoice() {
+    function pickStrictLatinSpanishVoice() {
       if (!('speechSynthesis' in window)) return null;
       const voices = window.speechSynthesis.getVoices();
       if (!voices.length) return null;
 
-      const preferredNames = [
-        'google español',
-        'dalia',
-        'paulina',
-        'catalina',
-        'sabina',
-        'camila',
-        'paloma',
-        'mónica',
-        'monica',
-        'sofía',
-        'sofia',
-        'natural',
-        'neural'
+      // Excluye explícitamente acentos de España (es-ES y voces castellanas peninsulares)
+      const isSpainAccent = (v) => {
+        const lang = (v.lang || '').toLowerCase();
+        const name = (v.name || '').toLowerCase();
+        if (lang === 'es-es' || lang.startsWith('es_es')) return true;
+        const spainKeywords = [
+          'españa', 'spain', 'castellano', 'mónica', 'monica',
+          'jorge', 'marisol', 'enrique', 'conchita', 'lucía', 'lucia',
+          'helena', 'laura', 'pablo', 'álvaro', 'alvaro', 'elvira'
+        ];
+        return spainKeywords.some(k => name.includes(k));
+      };
+
+      const latinVoices = voices.filter(v => {
+        const lang = (v.lang || '').toLowerCase();
+        return lang.startsWith('es') && !isSpainAccent(v);
+      });
+
+      // Prioridad de regiones y voces cálidas latinoamericanas
+      const latinLangPriority = [
+        'es-cl', 'es-mx', 'es-ar', 'es-co', 'es-pe', 'es-us', 'es-419'
       ];
 
-      const spanishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('es'));
-      if (!spanishVoices.length) return null;
+      const preferredLatinNames = [
+        'paulina', 'catalina', 'dalia', 'sabina', 'camila',
+        'paloma', 'sofía', 'sofia', 'valeria', 'ximena',
+        'latino', 'latin', 'méxico', 'mexico', 'chile', 'estados unidos', 'united states'
+      ];
 
-      for (const keyword of preferredNames) {
-        const match = spanishVoices.find(v => v.name.toLowerCase().includes(keyword));
+      for (const keyword of preferredLatinNames) {
+        const match = latinVoices.find(v => v.name.toLowerCase().includes(keyword));
         if (match) return match;
       }
 
-      return spanishVoices[0];
+      for (const targetLang of latinLangPriority) {
+        const match = latinVoices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith(targetLang));
+        if (match) return match;
+      }
+
+      return latinVoices[0] || null;
     }
 
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = () => {
-        selectedNaturalVoice = pickBestNaturalSpanishVoice();
+        selectedLatinVoice = pickStrictLatinSpanishVoice();
       };
-      selectedNaturalVoice = pickBestNaturalSpanishVoice();
+      selectedLatinVoice = pickStrictLatinSpanishVoice();
     }
 
     function stopSpeech() {
@@ -1244,24 +1261,24 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
-      document.getElementById('character-avatar').classList.remove('speaking');
+      document.getElementById('modal-topic-icon').classList.remove('speaking');
       audioEl.volume = 1.0;
     }
 
     function speakText(text) {
       currentVoiceText = text;
-      const avatar = document.getElementById('character-avatar');
+      const iconBox = document.getElementById('modal-topic-icon');
       const caption = document.getElementById('modal-voice-caption');
       caption.textContent = text;
 
       if (!('speechSynthesis' in window) || voiceMuted) {
-        avatar.classList.remove('speaking');
+        iconBox.classList.remove('speaking');
         return;
       }
 
       stopSpeech();
-      if (!selectedNaturalVoice) {
-        selectedNaturalVoice = pickBestNaturalSpanishVoice();
+      if (!selectedLatinVoice) {
+        selectedLatinVoice = pickStrictLatinSpanishVoice();
       }
 
       const sentences = text
@@ -1273,40 +1290,41 @@
 
       function speakNextSentence() {
         if (voiceMuted || index >= sentences.length) {
-          avatar.classList.remove('speaking');
+          iconBox.classList.remove('speaking');
           audioEl.volume = 1.0;
           return;
         }
 
         const utterance = new SpeechSynthesisUtterance(sentences[index]);
-        if (selectedNaturalVoice) {
-          utterance.voice = selectedNaturalVoice;
-          utterance.lang = selectedNaturalVoice.lang;
+        if (selectedLatinVoice) {
+          utterance.voice = selectedLatinVoice;
+          utterance.lang = selectedLatinVoice.lang;
         } else {
-          utterance.lang = 'es-CL';
+          // Fuerza código de región latinoamericano (Chile / México / Latinoamérica)
+          utterance.lang = 'es-MX';
         }
 
-        utterance.rate = 0.88;
-        utterance.pitch = 1.12;
+        utterance.rate = 0.90;
+        utterance.pitch = 1.10;
         utterance.volume = 1.0;
 
         utterance.onstart = () => {
-          avatar.classList.add('speaking');
+          iconBox.classList.add('speaking');
           if (!audioEl.paused) audioEl.volume = 0.20;
         };
 
         utterance.onend = () => {
           index++;
           if (index < sentences.length && !voiceMuted) {
-            speechQueueTimer = setTimeout(speakNextSentence, 260);
+            speechQueueTimer = setTimeout(speakNextSentence, 250);
           } else {
-            avatar.classList.remove('speaking');
+            iconBox.classList.remove('speaking');
             audioEl.volume = 1.0;
           }
         };
 
         utterance.onerror = () => {
-          avatar.classList.remove('speaking');
+          iconBox.classList.remove('speaking');
           audioEl.volume = 1.0;
         };
 
@@ -1316,9 +1334,13 @@
       speakNextSentence();
     }
 
+    /* =====================================================================
+       7. CONTENIDO E ICONOS TEMÁTICOS DE LAS VENTANAS EMERGENTES
+    ===================================================================== */
     const MODALS_DATA = {
       'modal-evento': {
         title: 'La Fiesta y Sorpresas',
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/></svg>`,
         voice: '¡Hola! Qué alegría invitarlos a nuestra Fiesta de Graduación del Octavo Básico A. Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta celebración está pensada especialmente para los alumnos del curso. ¡Se vienen muchas sorpresas, así que vengan con ganas de sacarse fotos con sus amigos, pasarlo increíble y comer muy rico!',
         html: `
           <div class="info-card-clean">
@@ -1332,6 +1354,7 @@
       },
       'modal-dresscode': {
         title: 'Dress Code Semiformal',
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`,
         voice: 'Para que disfruten y bailen con toda comodidad, el estilo de nuestra fiesta de graduación es semiformal. Las niñas pueden venir con un vestido cómodo que no sea largo de gala, o con un conjunto de pantalón muy lindo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y un blazer o chaleco sin mangas.',
         html: `
           <div class="info-card-clean">
@@ -1344,6 +1367,7 @@
       },
       'modal-musica': {
         title: 'Playlist 8° Básico A',
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
         voice: '¡Queremos escuchar tus temas favoritos en la pista! Escribe tu nombre y la canción que no puede faltar esa noche, para sumarla directo a la playlist oficial del curso.',
         html: `
           <p>Pide las canciones que quieres escuchar esa noche para armar la playlist oficial del curso:</p>
@@ -1354,6 +1378,7 @@
       },
       'modal-consultas': {
         title: 'Consultas Directas',
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
         voice: '¿Tienes alguna duda sobre la fiesta de graduación? Escríbenos tu pregunta aquí mismo y te respondemos directo por WhatsApp con mucho gusto.',
         html: `
           <p>Si necesitas resolver alguna duda específica sobre la jornada, envíanos un mensaje directo:</p>
@@ -1366,12 +1391,14 @@
     const backdrop = document.getElementById('modal-backdrop');
     const modalTitle = document.getElementById('modal-title');
     const modalContent = document.getElementById('modal-content');
+    const modalTopicIcon = document.getElementById('modal-topic-icon');
 
     function openModal(key) {
       const data = MODALS_DATA[key];
       if (!data) return;
 
       modalTitle.textContent = data.title;
+      modalTopicIcon.innerHTML = data.iconSvg;
       modalContent.innerHTML = data.html;
       backdrop.classList.add('active');
       speakText(data.voice);
