@@ -92,7 +92,6 @@
       opacity: 1;
     }
 
-    /* Velo sutil para asegurar legibilidad impecable de tipografías finas */
     .bg-soft-veil {
       position: absolute;
       inset: 0;
@@ -106,7 +105,6 @@
       pointer-events: none;
     }
 
-    /* Canvas de destellos de confeti al tocar */
     #confetti-canvas {
       position: absolute;
       inset: 0;
@@ -117,7 +115,7 @@
     }
 
     /* =========================================================
-       CONTROLES SUPERIORES FLOTANTES (INSIGNIA + AUDIO)
+       CONTROLES SUPERIORES FLOTANTES (INSIGNIA + BOTÓN MÚSICA EVIDENTE)
     ========================================================= */
     .top-utility-bar {
       position: relative;
@@ -171,50 +169,74 @@
       color: var(--ink-primary);
     }
 
+    /* Botón de Nota Musical Evidente y Estilizado */
     .audio-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 16px rgba(26, 34, 56, 0.06);
-      display: flex;
+      position: relative;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      padding: 8px 15px 8px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid #ffffff;
+      box-shadow: 0 6px 20px rgba(26, 34, 56, 0.12);
       cursor: pointer;
       color: var(--ink-primary);
-      transition: transform 0.25s ease, background 0.25s ease;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
 
     .audio-btn:active {
-      transform: scale(0.92);
+      transform: scale(0.93);
     }
 
-    .eq-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 2.5px;
-      height: 13px;
-    }
-
-    .eq-bars span {
-      width: 2px;
-      height: 4px;
+    .audio-note-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
       background: var(--ink-primary);
-      border-radius: 2px;
-      transition: height 0.2s ease;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s ease;
     }
 
-    .audio-btn.playing .eq-bars span:nth-child(1) { animation: eqPulse 0.7s infinite alternate; }
-    .audio-btn.playing .eq-bars span:nth-child(2) { animation: eqPulse 0.5s infinite alternate 0.2s; }
-    .audio-btn.playing .eq-bars span:nth-child(3) { animation: eqPulse 0.8s infinite alternate 0.1s; }
-    .audio-btn.playing .eq-bars span:nth-child(4) { animation: eqPulse 0.6s infinite alternate 0.3s; }
+    .audio-btn.playing .audio-note-circle {
+      background: var(--accent-crimson);
+      animation: noteBounce 1.2s infinite ease-in-out;
+    }
 
-    @keyframes eqPulse {
-      from { height: 3px; }
-      to { height: 13px; }
+    .audio-btn:not(.playing) {
+      animation: attentionPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes attentionPulse {
+      0%, 100% { box-shadow: 0 6px 20px rgba(26, 34, 56, 0.12), 0 0 0 0 rgba(158, 42, 59, 0.35); }
+      50% { box-shadow: 0 8px 24px rgba(26, 34, 56, 0.18), 0 0 0 7px rgba(158, 42, 59, 0); }
+    }
+
+    @keyframes noteBounce {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      35% { transform: scale(1.1) rotate(-8deg); }
+      70% { transform: scale(1.06) rotate(8deg); }
+    }
+
+    .audio-note-circle svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2;
+    }
+
+    .audio-status-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(10px, 1.3vh, 11.5px);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
     }
 
     /* =========================================================
@@ -234,7 +256,6 @@
       text-align: center;
     }
 
-    /* Título guía fino y elegante (reemplazable por tu <img src="titulo.png">) */
     .elegant-title-guide {
       display: flex;
       flex-direction: column;
@@ -427,7 +448,6 @@
       cursor: pointer;
       text-align: left;
       color: var(--ink-primary);
-      /* Animación de entrada escalonada */
       opacity: 0;
       transform: translateY(16px);
       animation: btnReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -502,7 +522,6 @@
       color: var(--ink-secondary);
     }
 
-    /* Mano táctil sutil pulsante */
     .touch-hint-icon {
       width: 24px;
       height: 24px;
@@ -689,7 +708,6 @@
       cursor: pointer;
     }
 
-    /* Slot reservado para el personaje en cada ventana emergente */
     .character-modal-slot {
       width: 100%;
       min-height: 76px;
@@ -764,7 +782,6 @@
       border: 1px solid rgba(26, 34, 56, 0.06);
     }
 
-    /* Formularios limpios dentro de modales */
     .clean-input {
       width: 100%;
       padding: 12px 14px;
@@ -819,7 +836,7 @@
     <!-- Capa 40: Confeti sutil al tocar botones -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- Barra Superior Minimalista: Insignia Altazor + Control de Audio -->
+    <!-- Barra Superior Minimalista: Insignia Altazor + Botón Evidente de Nota Musical -->
     <div class="top-utility-bar">
       <div class="school-badge-pill">
         <div class="school-monogram">C<span>A</span></div>
@@ -827,9 +844,14 @@
       </div>
 
       <button class="audio-btn" id="audio-toggle" aria-label="Música de fondo" title="Activar o pausar música">
-        <div class="eq-bars">
-          <span></span><span></span><span></span><span></span>
-        </div>
+        <span class="audio-note-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </span>
+        <span class="audio-status-label" id="audio-label">Música</span>
       </button>
     </div>
 
@@ -957,7 +979,6 @@
         <!-- Espacio reservado para el personaje animado -->
         <div class="character-modal-slot">
           <div class="character-avatar-box" id="character-avatar">
-            <!-- Aquí irá la imagen del personaje -->
             <span>Personaje</span>
           </div>
           <p class="character-speech-hint" id="modal-voice-caption">Escuchando información de la gala...</p>
@@ -968,21 +989,21 @@
       </div>
     </div>
 
-    <!-- Audio ambiental opcional (reemplaza src con tu mp3 cuando lo tengas) -->
-    <audio id="bg-music" loop preload="none"></audio>
+    <!-- Reproductor de música dinámico (1.mp3, 2.mp3, 3.mp3...) -->
+    <audio id="bg-music" preload="auto"></audio>
   </main>
 
   <script>
     /* =====================================================================
-       1. CONFIGURACIÓN EDITABLE (VIDEOS, WHATSAPP, FOTOS DEL CURSO)
+       1. CONFIGURACIÓN EDITABLE (VIDEOS, MÚSICA 1.MP3/2.MP3, WHATSAPP, FOTOS)
     ===================================================================== */
     const CONFIG = {
       EVENT_DATE: '2026-12-18T21:00:00-03:00',
       WHATSAPP_DJ: '56900000000',        // Tu número de WhatsApp para pedidos musicales (ej: 56912345678)
       WHATSAPP_DIRECTIVA: '56900000000', // Número de WhatsApp para consultas directas
-      MUSIC_FILE: '',                    // Ej: 'musica_gala.mp3'
       VIDEO_PREFIX: 'video',             // Busca automáticamente video1.mp4, video2.mp4, video3.mp4...
       VIDEO_EXT: '.mp4',
+      AUDIO_EXT: '.mp3',                 // Busca automáticamente 1.mp3, 2.mp3, 3.mp3...
       // Reemplaza los strings vacíos por las rutas de tus cuadraditos (ej: 'fotos/alumno1.jpg')
       FOTOS_CURSO: [
         { nombre: 'Alumno 1', img: '' },
@@ -1005,7 +1026,6 @@
       const videoEl = document.getElementById('bg-video');
       const availableVideos = [];
 
-      // Sondea secuencialmente video1.mp4, video2.mp4, video3.mp4, video4.mp4... hasta que uno no exista
       for (let i = 1; i <= 30; i++) {
         const candidate = `${CONFIG.VIDEO_PREFIX}${i}${CONFIG.VIDEO_EXT}`;
         try {
@@ -1022,7 +1042,6 @@
 
       if (availableVideos.length === 0) return;
 
-      // Evita repetir el mismo video de la apertura anterior
       const lastUsed = localStorage.getItem('gala8a_last_video');
       let pool = availableVideos.filter(v => v !== lastUsed);
       if (pool.length === 0) pool = availableVideos;
@@ -1038,7 +1057,101 @@
     }
 
     /* =====================================================================
-       3. RELOJ EN REVERSA EN VIVO
+       3. DETECCIÓN AUTOMÁTICA DE MP3 (1.MP3, 2.MP3...) + AUTOPLAY INTELIGENTE
+    ===================================================================== */
+    const audioEl = document.getElementById('bg-music');
+    const audioBtn = document.getElementById('audio-toggle');
+    const audioLabel = document.getElementById('audio-label');
+    let audioPlaylist = [];
+    let currentTrackIdx = 0;
+    let userManuallyPaused = false;
+
+    function updateAudioUI(isPlaying) {
+      if (isPlaying) {
+        audioBtn.classList.add('playing');
+        audioLabel.textContent = 'Sonando';
+      } else {
+        audioBtn.classList.remove('playing');
+        audioLabel.textContent = 'Música';
+      }
+    }
+
+    async function initDynamicMusicPlayer() {
+      for (let i = 1; i <= 30; i++) {
+        const candidate = `${i}${CONFIG.AUDIO_EXT}`;
+        try {
+          const response = await fetch(candidate, { method: 'HEAD' });
+          if (response.ok) {
+            audioPlaylist.push(candidate);
+          } else {
+            break;
+          }
+        } catch (err) {
+          break;
+        }
+      }
+
+      if (audioPlaylist.length === 0) return;
+
+      // Arranca en una pista aleatoria distinta a la última apertura
+      const lastTrack = localStorage.getItem('gala8a_last_track');
+      let pool = audioPlaylist.filter(t => t !== lastTrack);
+      if (pool.length === 0) pool = audioPlaylist;
+      const initialTrack = pool[Math.floor(Math.random() * pool.length)];
+      currentTrackIdx = audioPlaylist.indexOf(initialTrack);
+      localStorage.setItem('gala8a_last_track', initialTrack);
+
+      audioEl.src = audioPlaylist[currentTrackIdx];
+
+      // Avanza automáticamente a la siguiente canción cuando termina la actual
+      audioEl.addEventListener('ended', () => {
+        currentTrackIdx = (currentTrackIdx + 1) % audioPlaylist.length;
+        audioEl.src = audioPlaylist[currentTrackIdx];
+        audioEl.play().then(() => updateAudioUI(true)).catch(() => updateAudioUI(false));
+      });
+
+      // Intento de reproducción automática inmediata
+      const tryAutoPlay = () => {
+        if (userManuallyPaused || audioPlaylist.length === 0) return;
+        audioEl.play()
+          .then(() => {
+            updateAudioUI(true);
+            removeUnlockListeners();
+          })
+          .catch(() => {
+            updateAudioUI(false);
+          });
+      };
+
+      // Si el navegador bloquea el autoplay inicial, desbloquea apenas toquen cualquier punto de la pantalla
+      const removeUnlockListeners = () => {
+        document.removeEventListener('pointerdown', tryAutoPlay);
+        document.removeEventListener('keydown', tryAutoPlay);
+      };
+
+      tryAutoPlay();
+      document.addEventListener('pointerdown', tryAutoPlay);
+      document.addEventListener('keydown', tryAutoPlay);
+    }
+
+    audioBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audioPlaylist.length === 0) {
+        audioBtn.classList.toggle('playing');
+        return;
+      }
+      if (audioEl.paused) {
+        userManuallyPaused = false;
+        audioEl.play().then(() => updateAudioUI(true)).catch(() => {});
+      } else {
+        userManuallyPaused = true;
+        audioEl.pause();
+        updateAudioUI(false);
+      }
+    });
+
+    /* =====================================================================
+       4. RELOJ EN REVERSA EN VIVO
     ===================================================================== */
     function initCountdown() {
       const target = new Date(CONFIG.EVENT_DATE).getTime();
@@ -1067,7 +1180,7 @@
     }
 
     /* =====================================================================
-       4. CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
+       5. CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
     ===================================================================== */
     function init3DCarousel() {
       const ring = document.getElementById('carousel-ring');
@@ -1100,7 +1213,7 @@
 
       function animate() {
         if (!isDragging) {
-          angle -= 0.28; // Giro automático suave y elegante
+          angle -= 0.28;
         }
         ring.style.transform = `rotateY(${angle}deg)`;
         requestAnimationFrame(animate);
@@ -1123,7 +1236,7 @@
     }
 
     /* =====================================================================
-       5. DESTELLOS DE CONFETI SUTIL AL TOCAR BOTONES
+       6. DESTELLOS DE CONFETI SUTIL AL TOCAR BOTONES
     ===================================================================== */
     const confettiCanvas = document.getElementById('confetti-canvas');
     const ctx = confettiCanvas.getContext('2d');
@@ -1184,7 +1297,7 @@
     updateConfetti();
 
     /* =====================================================================
-       6. SÍNTESIS DE VOZ EN ESPAÑOL + VENTANAS EMERGENTES
+       7. SÍNTESIS DE VOZ EN ESPAÑOL + VENTANAS EMERGENTES
     ===================================================================== */
     let voiceMuted = false;
     let currentVoiceText = '';
@@ -1206,9 +1319,17 @@
       utterance.rate = 1.02;
       utterance.pitch = 1.05;
 
-      utterance.onstart = () => avatar.classList.add('speaking');
-      utterance.onend = () => avatar.classList.remove('speaking');
-      utterance.onerror = () => avatar.classList.remove('speaking');
+      // Atenúa suavemente la música de fondo mientras habla la voz del modal
+      utterance.onstart = () => {
+        avatar.classList.add('speaking');
+        if (!audioEl.paused) audioEl.volume = 0.22;
+      };
+      const restoreVolume = () => {
+        avatar.classList.remove('speaking');
+        audioEl.volume = 1.0;
+      };
+      utterance.onend = restoreVolume;
+      utterance.onerror = restoreVolume;
 
       window.speechSynthesis.speak(utterance);
     }
@@ -1273,7 +1394,6 @@
       backdrop.classList.add('active');
       speakText(data.voice);
 
-      // Conectar acciones de WhatsApp si aplica
       const btnSong = document.getElementById('btn-send-song');
       if (btnSong) {
         btnSong.addEventListener('click', () => {
@@ -1302,6 +1422,7 @@
       backdrop.classList.remove('active');
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       document.getElementById('character-avatar').classList.remove('speaking');
+      audioEl.volume = 1.0;
     }
 
     document.querySelectorAll('.glass-action-btn').forEach(btn => {
@@ -1332,28 +1453,9 @@
       if (voiceMuted && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         document.getElementById('character-avatar').classList.remove('speaking');
+        audioEl.volume = 1.0;
       } else {
         speakText(currentVoiceText);
-      }
-    });
-
-    /* =====================================================================
-       7. CONTROL DE MÚSICA AMBIENTAL
-    ===================================================================== */
-    const audioEl = document.getElementById('bg-music');
-    const audioBtn = document.getElementById('audio-toggle');
-    if (CONFIG.MUSIC_FILE) audioEl.src = CONFIG.MUSIC_FILE;
-
-    audioBtn.addEventListener('click', () => {
-      if (!CONFIG.MUSIC_FILE) {
-        audioBtn.classList.toggle('playing');
-        return;
-      }
-      if (audioEl.paused) {
-        audioEl.play().then(() => audioBtn.classList.add('playing')).catch(() => {});
-      } else {
-        audioEl.pause();
-        audioBtn.classList.remove('playing');
       }
     });
 
@@ -1361,6 +1463,7 @@
        INICIALIZACIÓN
     ===================================================================== */
     initDynamicVideoBackground();
+    initDynamicMusicPlayer();
     initCountdown();
     init3DCarousel();
   </script>
