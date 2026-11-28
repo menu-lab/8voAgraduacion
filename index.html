@@ -132,4 +132,1237 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding:
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 16px rgba(26, 34, 56, 0.05);
+    }
+
+    .school-monogram {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(26, 34, 56, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      color: var(--ink-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .school-monogram span {
+      color: var(--accent-crimson);
+      font-weight: 600;
+    }
+
+    .school-badge-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(10px, 1.35vh, 12px);
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .audio-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 16px rgba(26, 34, 56, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--ink-primary);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .audio-btn:active {
+      transform: scale(0.92);
+    }
+
+    .eq-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 13px;
+    }
+
+    .eq-bars span {
+      width: 2px;
+      height: 4px;
+      background: var(--ink-primary);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+
+    .audio-btn.playing .eq-bars span:nth-child(1) { animation: eqPulse 0.7s infinite alternate; }
+    .audio-btn.playing .eq-bars span:nth-child(2) { animation: eqPulse 0.5s infinite alternate 0.2s; }
+    .audio-btn.playing .eq-bars span:nth-child(3) { animation: eqPulse 0.8s infinite alternate 0.1s; }
+    .audio-btn.playing .eq-bars span:nth-child(4) { animation: eqPulse 0.6s infinite alternate 0.3s; }
+
+    @keyframes eqPulse {
+      from { height: 3px; }
+      to { height: 13px; }
+    }
+
+    /* =========================================================
+       ZONA SUPERIOR RESERVADA PARA TÍTULO PNG TRANSPARENTE
+    ========================================================= */
+    #header-banner-slot {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      min-height: 17vh;
+      max-height: 20vh;
+      padding: 1vh 6% 0.5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Título guía fino y elegante (reemplazable por tu <img src="titulo.png">) */
+    .elegant-title-guide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4vh;
+    }
+
+    .title-kicker {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: clamp(11px, 1.45vh, 14px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .title-main {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 200;
+      font-size: clamp(28px, 4.3vh, 42px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      line-height: 1.08;
+    }
+
+    .title-main strong {
+      font-weight: 500;
+    }
+
+    .title-divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ink-primary), transparent);
+      margin-top: 0.6vh;
+      opacity: 0.35;
+    }
+
+    /* =========================================================
+       RELOJ EN REVERSA ESTILIZADO Y FINO
+    ========================================================= */
+    .countdown-strip {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0.4vh 6%;
+    }
+
+    .cd-pill {
+      min-width: 58px;
+      padding: 7px 10px;
+      border-radius: 14px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(26, 34, 56, 0.04);
+    }
+
+    .cd-num {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: clamp(16px, 2.3vh, 22px);
+      color: var(--ink-primary);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .cd-lbl {
+      display: block;
+      font-size: clamp(8px, 1.05vh, 10px);
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* =========================================================
+       CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
+    ========================================================= */
+    .carousel-stage {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 15.5vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 950px;
+      overflow: hidden;
+      margin: 0.4vh 0;
+    }
+
+    .carousel-ring {
+      position: relative;
+      width: 11vh;
+      height: 11vh;
+      transform-style: preserve-3d;
+      cursor: grab;
+    }
+
+    .carousel-ring:active {
+      cursor: grabbing;
+    }
+
+    .carousel-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 22px rgba(26, 34, 56, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: visible;
+    }
+
+    .carousel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .student-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(235,242,252,0.75));
+      color: var(--ink-secondary);
+    }
+
+    .student-placeholder svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.3;
+      opacity: 0.65;
+    }
+
+    .student-placeholder span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* =========================================================
+       BOTONERA CENTRAL SUTIL, ELEGANTE Y ANIMADA
+    ========================================================= */
+    .menu-stack {
+      position: relative;
+      z-index: 12;
+      width: 100%;
+      padding: 0.5vh 7.5%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.45vh;
+    }
+
+    .glass-action-btn {
+      position: relative;
+      width: 100%;
+      padding: 1.65vh 20px;
+      border-radius: 18px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink-primary);
+      /* Animación de entrada escalonada */
+      opacity: 0;
+      transform: translateY(16px);
+      animation: btnReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), background 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .glass-action-btn:nth-child(1) { animation-delay: 0.15s; }
+    .glass-action-btn:nth-child(2) { animation-delay: 0.30s; }
+    .glass-action-btn:nth-child(3) { animation-delay: 0.45s; }
+    .glass-action-btn:nth-child(4) { animation-delay: 0.60s; }
+
+    @keyframes btnReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .glass-action-btn:hover {
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 32px rgba(26, 34, 56, 0.12);
+    }
+
+    .glass-action-btn.tapped {
+      transform: scale(0.96);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .btn-left-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-icon-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-primary);
+      flex-shrink: 0;
+    }
+
+    .btn-icon-circle svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.5;
+    }
+
+    .btn-text-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .btn-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: clamp(14px, 1.9vh, 17px);
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+    }
+
+    .btn-subtitle {
+      font-weight: 300;
+      font-size: clamp(11px, 1.35vh, 12.5px);
+      letter-spacing: 0.02em;
+      color: var(--ink-secondary);
+    }
+
+    /* Mano táctil sutil pulsante */
+    .touch-hint-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-secondary);
+      opacity: 0.65;
+      animation: gentleTap 2.2s infinite ease-in-out;
+    }
+
+    .touch-hint-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke-width: 1.4;
+    }
+
+    @keyframes gentleTap {
+      0%, 100% { transform: scale(1); opacity: 0.55; }
+      50% { transform: scale(0.88); opacity: 0.95; }
+    }
+
+    /* =========================================================
+       FOOTER FIJO INFERIOR (EXCLUSIVO UBICACIÓN -> GOOGLE MAPS)
+    ========================================================= */
+    .location-footer {
+      position: relative;
+      z-index: 12;
+      padding: 1.2vh 7.5% 2.4vh;
+    }
+
+    .location-link-card {
+      width: 100%;
+      padding: 1.5vh 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 26px rgba(26, 34, 56, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--ink-primary);
+      transition: transform 0.22s ease, background 0.22s ease;
+    }
+
+    .location-link-card:active {
+      transform: scale(0.97);
+    }
+
+    .loc-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .loc-pin-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(26, 34, 56, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-crimson);
+      flex-shrink: 0;
+    }
+
+    .loc-pin-box svg {
+      width: 17px;
+      height: 17px;
+      stroke-width: 1.7;
+    }
+
+    .loc-address {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(11.5px, 1.45vh, 13.5px);
+      line-height: 1.35;
+      color: var(--ink-primary);
+    }
+
+    .loc-cta-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       VENTANAS EMERGENTES (MODALES FINOS + SLOT PERSONAJE + VOZ)
+    ========================================================= */
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 35;
+      background: rgba(20, 28, 48, 0.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-height: 82vh;
+      border-radius: 26px;
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid #ffffff;
+      box-shadow: 0 24px 60px rgba(20, 28, 48, 0.18);
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: translateY(18px) scale(0.97);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.active .modal-sheet {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .voice-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .voice-chip-btn {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(26, 34, 56, 0.12);
+      background: rgba(255, 255, 255, 0.8);
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .close-modal-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(26, 34, 56, 0.1);
+      background: #ffffff;
+      color: var(--ink-primary);
+      font-size: 16px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Slot reservado para el personaje en cada ventana emergente */
+    .character-modal-slot {
+      width: 100%;
+      min-height: 76px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(236,243,253,0.75));
+      border: 1px dashed rgba(26, 34, 56, 0.16);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+    }
+
+    .character-avatar-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(26, 34, 56, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      font-size: 10px;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+
+    .character-avatar-box.speaking {
+      animation: characterTalk 0.45s infinite alternate ease-in-out;
+    }
+
+    @keyframes characterTalk {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-3px) scale(1.03); }
+    }
+
+    .character-speech-hint {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .modal-heading {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 21px;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+    }
+
+    .modal-body-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-body-text strong {
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .info-card-clean {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(26, 34, 56, 0.06);
+    }
+
+    /* Formularios limpios dentro de modales */
+    .clean-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(26, 34, 56, 0.14);
+      background: rgba(255, 255, 255, 0.9);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--ink-primary);
+      outline: none;
+    }
+
+    .clean-input:focus {
+      border-color: var(--ink-primary);
+    }
+
+    .primary-pill-action {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 14px;
+      border: none;
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .primary-pill-action:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <main id="app-canvas">
+    <!-- Capa 0: Respaldo visual bokeh luminoso -->
+    <div class="bg-fallback-bokeh"></div>
+
+    <!-- Capa 1: Video dinámico automático (video1.mp4, video2.mp4, video3.mp4...) -->
+    <video id="bg-video" autoplay loop muted playsinline></video>
+
+    <!-- Capa 2: Velo sutil de contraste -->
+    <div class="bg-soft-veil"></div>
+
+    <!-- Capa 40: Confeti sutil al tocar botones -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Barra Superior Minimalista: Insignia Altazor + Control de Audio -->
+    <div class="top-utility-bar">
+      <div class="school-badge-pill">
+        <div class="school-monogram">C<span>A</span></div>
+        <span class="school-badge-text">Colegio Altazor</span>
+      </div>
+
+      <button class="audio-btn" id="audio-toggle" aria-label="Música de fondo" title="Activar o pausar música">
+        <div class="eq-bars">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Espacio Superior Reservado para Encabezado PNG Transparente -->
+    <header id="header-banner-slot">
+      <!-- Cuando tengas tu PNG transparente, reemplaza este bloque por:
+           <img src="titulo_gala.png" alt="Gran Gala Octavo A 2026" style="max-height: 100%; max-width: 92%; object-fit: contain;" /> -->
+      <div class="elegant-title-guide">
+        <span class="title-kicker">Generación 2026</span>
+        <h1 class="title-main">Gran Gala <strong>8°A</strong></h1>
+        <div class="title-divider"></div>
+      </div>
+    </header>
+
+    <!-- Reloj en Reversa Fino -->
+    <section class="countdown-strip" aria-label="Cuenta regresiva">
+      <div class="cd-pill"><span class="cd-num" id="cd-days">00</span><span class="cd-lbl">Días</span></div>
+      <div class="cd-pill"><span class="cd-num" id="cd-hours">00</span><span class="cd-lbl">Hrs</span></div>
+      <div class="cd-pill"><span class="cd-num" id="cd-mins">00</span><span class="cd-lbl">Min</span></div>
+      <div class="cd-pill"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl">Seg</span></div>
+    </section>
+
+    <!-- Carrusel Circular 3D Automático (Fotos del Curso) -->
+    <section class="carousel-stage" aria-label="Galería 8° Básico A">
+      <div class="carousel-ring" id="carousel-ring"></div>
+    </section>
+
+    <!-- Botonera Central Translúcida con Aparición Escalonada -->
+    <nav class="menu-stack" aria-label="Opciones de la gala">
+      <button class="glass-action-btn" data-modal="modal-evento">
+        <div class="btn-left-group">
+          <div class="btn-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="btn-text-group">
+            <span class="btn-title">La Gala y Sorpresas</span>
+            <span class="btn-subtitle">Viernes 18 de diciembre • 21:00 a 01:00 hrs</span>
+          </div>
+        </div>
+        <span class="touch-hint-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11V4a1.5 1.5 0 0 1 3 0v5h1.5a1.5 1.5 0 0 1 1.5 1.5v.5h1a1.5 1.5 0 0 1 1.5 1.5v3.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-4.5-2.8L5 14.5a1.4 1.4 0 0 1 2.2-1.6L9 14v-3z"/></svg>
+        </span>
+      </button>
+
+      <button class="glass-action-btn" data-modal="modal-dresscode">
+        <div class="btn-left-group">
+          <div class="btn-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l3 4 5 2-2 11H6L4 9l5-2 3-4z"/></svg>
+          </div>
+          <div class="btn-text-group">
+            <span class="btn-title">Dress Code Semiformal</span>
+            <span class="btn-subtitle">Guía de vestimenta cómoda y juvenil</span>
+          </div>
+        </div>
+        <span class="touch-hint-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11V4a1.5 1.5 0 0 1 3 0v5h1.5a1.5 1.5 0 0 1 1.5 1.5v.5h1a1.5 1.5 0 0 1 1.5 1.5v3.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-4.5-2.8L5 14.5a1.4 1.4 0 0 1 2.2-1.6L9 14v-3z"/></svg>
+        </span>
+      </button>
+
+      <button class="glass-action-btn" data-modal="modal-musica">
+        <div class="btn-left-group">
+          <div class="btn-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div class="btn-text-group">
+            <span class="btn-title">Playlist del Curso</span>
+            <span class="btn-subtitle">Pide tus canciones favoritas para la fiesta</span>
+          </div>
+        </div>
+        <span class="touch-hint-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11V4a1.5 1.5 0 0 1 3 0v5h1.5a1.5 1.5 0 0 1 1.5 1.5v.5h1a1.5 1.5 0 0 1 1.5 1.5v3.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-4.5-2.8L5 14.5a1.4 1.4 0 0 1 2.2-1.6L9 14v-3z"/></svg>
+        </span>
+      </button>
+
+      <button class="glass-action-btn" data-modal="modal-consultas">
+        <div class="btn-left-group">
+          <div class="btn-icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="btn-text-group">
+            <span class="btn-title">Consultas Directas</span>
+            <span class="btn-subtitle">Contacto rápido por WhatsApp</span>
+          </div>
+        </div>
+        <span class="touch-hint-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11V4a1.5 1.5 0 0 1 3 0v5h1.5a1.5 1.5 0 0 1 1.5 1.5v.5h1a1.5 1.5 0 0 1 1.5 1.5v3.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-4.5-2.8L5 14.5a1.4 1.4 0 0 1 2.2-1.6L9 14v-3z"/></svg>
+        </span>
+      </button>
+    </nav>
+
+    <!-- Footer Fijo Inferior: Solo Dirección y Acceso Directo a Google Maps -->
+    <footer class="location-footer">
+      <a
+        class="location-link-card"
+        href="https://www.google.com/maps/search/?api=1&query=Lo+Arcaya,+Parcela+10,+Loteo+La+Portada,+Pirque,+Chile"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="loc-info">
+          <div class="loc-pin-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="loc-address">
+            Lo Arcaya, Parcela 10<br />
+            Loteo La Portada, Pirque
+          </div>
+        </div>
+        <span class="loc-cta-pill">Google Maps</span>
+      </a>
+    </footer>
+
+    <!-- =========================================================
+         VENTANAS EMERGENTES (MODALES CON VOZ + SLOT PERSONAJE)
+    ========================================================= -->
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal-sheet" role="dialog" aria-modal="true">
+        <div class="modal-top-row">
+          <div class="voice-controls">
+            <button class="voice-chip-btn" id="btn-replay-voice" type="button">🔊 Repetir voz</button>
+            <button class="voice-chip-btn" id="btn-mute-voice" type="button">Silenciar</button>
+          </div>
+          <button class="close-modal-btn" id="btn-close-modal" type="button" aria-label="Cerrar">✕</button>
+        </div>
+
+        <!-- Espacio reservado para el personaje animado -->
+        <div class="character-modal-slot">
+          <div class="character-avatar-box" id="character-avatar">
+            <!-- Aquí irá la imagen del personaje -->
+            <span>Personaje</span>
+          </div>
+          <p class="character-speech-hint" id="modal-voice-caption">Escuchando información de la gala...</p>
+        </div>
+
+        <h2 class="modal-heading" id="modal-title">Título</h2>
+        <div class="modal-body-text" id="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- Audio ambiental opcional (reemplaza src con tu mp3 cuando lo tengas) -->
+    <audio id="bg-music" loop preload="none"></audio>
+  </main>
+
+  <script>
+    /* =====================================================================
+       1. CONFIGURACIÓN EDITABLE (VIDEOS, WHATSAPP, FOTOS DEL CURSO)
+    ===================================================================== */
+    const CONFIG = {
+      EVENT_DATE: '2026-12-18T21:00:00-03:00',
+      WHATSAPP_DJ: '56900000000',        // Tu número de WhatsApp para pedidos musicales (ej: 56912345678)
+      WHATSAPP_DIRECTIVA: '56900000000', // Número de WhatsApp para consultas directas
+      MUSIC_FILE: '',                    // Ej: 'musica_gala.mp3'
+      VIDEO_PREFIX: 'video',             // Busca automáticamente video1.mp4, video2.mp4, video3.mp4...
+      VIDEO_EXT: '.mp4',
+      // Reemplaza los strings vacíos por las rutas de tus cuadraditos (ej: 'fotos/alumno1.jpg')
+      FOTOS_CURSO: [
+        { nombre: 'Alumno 1', img: '' },
+        { nombre: 'Alumno 2', img: '' },
+        { nombre: 'Alumno 3', img: '' },
+        { nombre: 'Alumno 4', img: '' },
+        { nombre: 'Alumno 5', img: '' },
+        { nombre: 'Alumno 6', img: '' },
+        { nombre: 'Alumno 7', img: '' },
+        { nombre: 'Alumno 8', img: '' },
+        { nombre: 'Alumno 9', img: '' },
+        { nombre: 'Alumno 10', img: '' }
+      ]
+    };
+
+    /* =====================================================================
+       2. DETECCIÓN AUTOMÁTICA Y ROTACIÓN SIN REPETICIÓN DE VIDEOS MP4
+    ===================================================================== */
+    async function initDynamicVideoBackground() {
+      const videoEl = document.getElementById('bg-video');
+      const availableVideos = [];
+
+      // Sondea secuencialmente video1.mp4, video2.mp4, video3.mp4, video4.mp4... hasta que uno no exista
+      for (let i = 1; i <= 30; i++) {
+        const candidate = `${CONFIG.VIDEO_PREFIX}${i}${CONFIG.VIDEO_EXT}`;
+        try {
+          const response = await fetch(candidate, { method: 'HEAD' });
+          if (response.ok) {
+            availableVideos.push(candidate);
+          } else {
+            break;
+          }
+        } catch (err) {
+          break;
+        }
+      }
+
+      if (availableVideos.length === 0) return;
+
+      // Evita repetir el mismo video de la apertura anterior
+      const lastUsed = localStorage.getItem('gala8a_last_video');
+      let pool = availableVideos.filter(v => v !== lastUsed);
+      if (pool.length === 0) pool = availableVideos;
+
+      const selectedVideo = pool[Math.floor(Math.random() * pool.length)];
+      localStorage.setItem('gala8a_last_video', selectedVideo);
+
+      videoEl.src = selectedVideo;
+      videoEl.addEventListener('loadeddata', () => {
+        videoEl.classList.add('loaded');
+        videoEl.play().catch(() => {});
+      });
+    }
+
+    /* =====================================================================
+       3. RELOJ EN REVERSA EN VIVO
+    ===================================================================== */
+    function initCountdown() {
+      const target = new Date(CONFIG.EVENT_DATE).getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-mins');
+      const elSecs = document.getElementById('cd-secs');
+
+      function update() {
+        const now = Date.now();
+        const diff = Math.max(0, target - now);
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        elDays.textContent = String(d).padStart(2, '0');
+        elHours.textContent = String(h).padStart(2, '0');
+        elMins.textContent = String(m).padStart(2, '0');
+        elSecs.textContent = String(s).padStart(2, '0');
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    /* =====================================================================
+       4. CARRUSEL CIRCULAR 3D AUTOMÁTICO (FOTOS DEL CURSO)
+    ===================================================================== */
+    function init3DCarousel() {
+      const ring = document.getElementById('carousel-ring');
+      const items = CONFIG.FOTOS_CURSO;
+      const total = items.length;
+      const stepAngle = 360 / total;
+      const radius = Math.round((window.innerHeight * 0.11) / (2 * Math.tan(Math.PI / total))) + 38;
+
+      items.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'carousel-card';
+        card.style.transform = `rotateY(${idx * stepAngle}deg) translateZ(${radius}px)`;
+
+        if (item.img) {
+          card.innerHTML = `<img src="${item.img}" alt="${item.nombre}" loading="lazy" />`;
+        } else {
+          card.innerHTML = `
+            <div class="student-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.8-4 14.2-4 16 0"/></svg>
+              <span>${item.nombre}</span>
+            </div>
+          `;
+        }
+        ring.appendChild(card);
+      });
+
+      let angle = 0;
+      let isDragging = false;
+      let startX = 0;
+
+      function animate() {
+        if (!isDragging) {
+          angle -= 0.28; // Giro automático suave y elegante
+        }
+        ring.style.transform = `rotateY(${angle}deg)`;
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      ring.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const delta = e.clientX - startX;
+        startX = e.clientX;
+        angle += delta * 0.45;
+      });
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+    }
+
+    /* =====================================================================
+       5. DESTELLOS DE CONFETI SUTIL AL TOCAR BOTONES
+    ===================================================================== */
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const ctx = confettiCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      const rect = document.getElementById('app-canvas').getBoundingClientRect();
+      confettiCanvas.width = rect.width;
+      confettiCanvas.height = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function spawnConfetti(clientX, clientY) {
+      const rect = confettiCanvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const colors = ['#ffffff', '#a5d8ff', '#d0bfff', '#1a2238', '#9e2a3b'];
+
+      for (let i = 0; i < 26; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1.5 + Math.random() * 4.2;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 1.5,
+          size: 3 + Math.random() * 3.5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          rot: Math.random() * 360
+        });
+      }
+    }
+
+    function updateConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      particles = particles.filter(p => p.alpha > 0.03);
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.08;
+        p.alpha *= 0.96;
+        p.rot += 4;
+
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(updateConfetti);
+    }
+    updateConfetti();
+
+    /* =====================================================================
+       6. SÍNTESIS DE VOZ EN ESPAÑOL + VENTANAS EMERGENTES
+    ===================================================================== */
+    let voiceMuted = false;
+    let currentVoiceText = '';
+
+    function speakText(text) {
+      currentVoiceText = text;
+      const avatar = document.getElementById('character-avatar');
+      const caption = document.getElementById('modal-voice-caption');
+      caption.textContent = text;
+
+      if (!('speechSynthesis' in window) || voiceMuted) {
+        avatar.classList.remove('speaking');
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-CL';
+      utterance.rate = 1.02;
+      utterance.pitch = 1.05;
+
+      utterance.onstart = () => avatar.classList.add('speaking');
+      utterance.onend = () => avatar.classList.remove('speaking');
+      utterance.onerror = () => avatar.classList.remove('speaking');
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    const MODALS_DATA = {
+      'modal-evento': {
+        title: 'La Gala y Sorpresas',
+        voice: 'Nos vemos el viernes dieciocho de diciembre, desde las nueve de la noche hasta la una de la madrugada. Esta gala es exclusiva para los alumnos del octavo básico A. ¡Se vienen muchas sorpresas, vayan preparados para sacarse fotos con sus amigos, pasarla bien y comer muy rico!',
+        html: `
+          <div class="info-card-clean">
+            <strong>Fecha y Horario:</strong> Viernes 18 de diciembre, de 21:00 a 01:00 hrs.
+          </div>
+          <div class="info-card-clean">
+            <strong>Modalidad Exclusiva Alumnos:</strong> Fiesta pensada solo para los estudiantes de 8° Básico A (apoderados dejan y retiran en el recinto).
+          </div>
+          <p>¡Se vienen muchas sorpresas! Vayan preparados para sacarse fotografías con sus amigos, pasarla bien y comer muy rico.</p>
+        `
+      },
+      'modal-dresscode': {
+        title: 'Dress Code Semiformal',
+        voice: 'El código de vestimenta es semiformal y cómodo para bailar. Las niñas pueden asistir con vestido, no largo de gala, o con pantalón cómodo. Los niños pueden usar pantalón, incluso jeans sin rasgaduras, combinado con camisa y blazer o chaleco sin mangas.',
+        html: `
+          <div class="info-card-clean">
+            <strong>Niñas:</strong> Vestido (no largo de gala) o conjunto de pantalón cómodo con estilo semiformal, ideal para moverse y bailar.
+          </div>
+          <div class="info-card-clean">
+            <strong>Niños:</strong> Pantalón (puede ser jeans sin rasgaduras ni roturas) combinado con camisa y blazer o chaleco sin mangas.
+          </div>
+        `
+      },
+      'modal-musica': {
+        title: 'Playlist 8° Básico A',
+        voice: '¡Arma la música de tu fiesta! Escribe tu nombre y la canción que no puede faltar en la pista para enviarla directo a la playlist del curso.',
+        html: `
+          <p>Pide las canciones que quieres escuchar esa noche para armar la playlist oficial del curso:</p>
+          <input type="text" id="input-student-name" class="clean-input" placeholder="Tu nombre y apellido" />
+          <input type="text" id="input-song-request" class="clean-input" placeholder="Canción y artista favorito" />
+          <button type="button" class="primary-pill-action" id="btn-send-song">Enviar pedido por WhatsApp</button>
+        `
+      },
+      'modal-consultas': {
+        title: 'Consultas Directas',
+        voice: '¿Tienes alguna duda puntual sobre la gala? Escribe tu consulta aquí y te conectamos directo por WhatsApp.',
+        html: `
+          <p>Si necesitas resolver alguna duda específica sobre la jornada, envíanos un mensaje directo:</p>
+          <input type="text" id="input-query-text" class="clean-input" placeholder="Escribe tu consulta aquí..." />
+          <button type="button" class="primary-pill-action" id="btn-send-query">Consultar por WhatsApp</button>
+        `
+      }
+    };
+
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+    function openModal(key) {
+      const data = MODALS_DATA[key];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalContent.innerHTML = data.html;
+      backdrop.classList.add('active');
+      speakText(data.voice);
+
+      // Conectar acciones de WhatsApp si aplica
+      const btnSong = document.getElementById('btn-send-song');
+      if (btnSong) {
+        btnSong.addEventListener('click', () => {
+          const name = document.getElementById('input-student-name').value.trim() || 'Alumno 8°A';
+          const song = document.getElementById('input-song-request').value.trim();
+          if (!song) {
+            alert('Escribe el nombre de la canción que deseas pedir.');
+            return;
+          }
+          const msg = encodeURIComponent(`Hola! Soy ${name} (8° Básico A) y pido esta canción para la Gala: ${song}`);
+          window.open(`https://wa.me/${CONFIG.WHATSAPP_DJ}?text=${msg}`, '_blank');
+        });
+      }
+
+      const btnQuery = document.getElementById('btn-send-query');
+      if (btnQuery) {
+        btnQuery.addEventListener('click', () => {
+          const query = document.getElementById('input-query-text').value.trim() || 'Hola, tengo una consulta sobre la Gran Gala 8°A.';
+          const msg = encodeURIComponent(query);
+          window.open(`https://wa.me/${CONFIG.WHATSAPP_DIRECTIVA}?text=${msg}`, '_blank');
+        });
+      }
+    }
+
+    function closeModal() {
+      backdrop.classList.remove('active');
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      document.getElementById('character-avatar').classList.remove('speaking');
+    }
+
+    document.querySelectorAll('.glass-action-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        btn.classList.add('tapped');
+        spawnConfetti(e.clientX, e.clientY);
+        setTimeout(() => {
+          btn.classList.remove('tapped');
+          openModal(btn.dataset.modal);
+        }, 210);
+      });
+    });
+
+    document.getElementById('btn-close-modal').addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.getElementById('btn-replay-voice').addEventListener('click', () => {
+      voiceMuted = false;
+      document.getElementById('btn-mute-voice').textContent = 'Silenciar';
+      speakText(currentVoiceText);
+    });
+
+    document.getElementById('btn-mute-voice').addEventListener('click', (e) => {
+      voiceMuted = !voiceMuted;
+      e.target.textContent = voiceMuted ? 'Activar voz' : 'Silenciar';
+      if (voiceMuted && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        document.getElementById('character-avatar').classList.remove('speaking');
+      } else {
+        speakText(currentVoiceText);
+      }
+    });
+
+    /* =====================================================================
+       7. CONTROL DE MÚSICA AMBIENTAL
+    ===================================================================== */
+    const audioEl = document.getElementById('bg-music');
+    const audioBtn = document.getElementById('audio-toggle');
+    if (CONFIG.MUSIC_FILE) audioEl.src = CONFIG.MUSIC_FILE;
+
+    audioBtn.addEventListener('click', () => {
+      if (!CONFIG.MUSIC_FILE) {
+        audioBtn.classList.toggle('playing');
+        return;
+      }
+      if (audioEl.paused) {
+        audioEl.play().then(() => audioBtn.classList.add('playing')).catch(() => {});
+      } else {
+        audioEl.pause();
+        audioBtn.classList.remove('playing');
+      }
+    });
+
+    /* =====================================================================
+       INICIALIZACIÓN
+    ===================================================================== */
+    initDynamicVideoBackground();
+    initCountdown();
+    init3DCarousel();
+  </script>
+</body>
+</html>
