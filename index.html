@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gran Gala 8° Básico A • Colegio Altazor 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+  <style>
+    :root {
+      --ink-primary: #1a2238;
+      --ink-secondary: #4a5568;
+      --ink-muted: #718096;
+      --accent-soft: #3b5998;
+      --accent-crimson: #9e2a3b;
+      --glass-bg: rgba(255, 255, 255, 0.58);
+      --glass-bg-strong: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-shadow: 0 10px 30px rgba(26, 34, 56, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden;
+      background-color: #f4f7fb;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 300;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================================
+       LIENZO MAESTRO 900x1700 PX (ZERO SCROLL)
+    ========================================================= */
+    #app-canvas {
+      position: relative;
+      height: 100dvh;
+      max-height: 100dvh;
+      aspect-ratio: 900 / 1700;
+      width: auto;
+      max-width: 100vw;
+      background-color: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 24px 60px rgba(20, 28, 48, 0.14);
+    }
+
+    /* =========================================================
+       FONDO DINÁMICO DE VIDEO + RESPALDO BOKEH LUMINOSO
+    ========================================================= */
+    .bg-fallback-bokeh {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(186, 230, 253, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 82% 25%, rgba(221, 214, 254, 0.55) 0%, transparent 50%),
+        radial-gradient(circle at 30% 80%, rgba(165, 243, 252, 0.55) 0%, transparent 50%),
+        radial-gradient(circle at 80% 85%, rgba(199, 210, 254, 0.6) 0%, transparent 45%),
+        linear-gradient(160deg, #e8f1fb 0%, #f5f7fc 48%, #e4ecfa 100%);
+    }
+
+    #bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1.1s ease;
+      pointer-events: none;
+    }
+
+    #bg-video.loaded {
+      opacity: 1;
+    }
+
+    /* Velo sutil para asegurar legibilidad impecable de tipografías finas */
+    .bg-soft-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.32) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.42) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Canvas de destellos de confeti al tocar */
+    #confetti-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       CONTROLES SUPERIORES FLOTANTES (INSIGNIA + AUDIO)
+    ========================================================= */
+    .top-utility-bar {
+      position: relative;
+      z-index: 15;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.2vh 5.5% 0;
+    }
+
+    .school-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding:
